@@ -1,0 +1,4 @@
+﻿  main.cpp
+Z:\Shared\Documents\Projects\VSProjects\Homework1\hmain.hpp(10): warning C4114: same type qualifier used more than once
+Z:\Shared\Documents\Projects\VSProjects\Homework1\hmain.hpp(11): warning C4114: same type qualifier used more than once
+  Homework1.vcxproj -> Z:\Shared\Documents\Projects\VSProjects\Homework1\Debug\Homework1.exe
