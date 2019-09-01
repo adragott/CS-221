@@ -7,6 +7,8 @@
 #include <cstring>
 
 static Locker lockerBank[NUM_LOCKERS];
+
+
 int main(int argc, char** argv)
 {
 	std::string inputFile(INPUT_FILE_NAME);
@@ -32,11 +34,8 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
-	
-
 	InitializeLockers(lockerBank);
 	ReadLockerInfo(lockerBank, iStream, oStream);
-
 
 	iStream.close();
 	oStream.close();
@@ -61,11 +60,11 @@ int FindNoOfAvailableLockers(Locker mylockers[])
 int FindAvailableLocker(Locker mylockers[])
 {
 	int ret = -1;
-	for (int x = 0; x < NUM_LOCKERS; x++)
+	for (int ind = 0; ind < NUM_LOCKERS; ind++)
 	{
-		if (!mylockers[x].resv)
+		if (!mylockers[ind].resv)
 		{
-			ret = x;
+			ret = ind;
 			break;
 		}
 	}
@@ -78,15 +77,11 @@ int DropBag(Locker mylockers[], const char* person, int nextkey = -1)
 	int lockerNum = FindAvailableLocker(mylockers);
 	if (lockerNum < 0 || lockerNum >= NUM_LOCKERS)
 	{
+		
 		return lockerNum;
 	}
-
 	// Fill the locker
-	memcpy(mylockers[lockerNum].name, person, strlen(person));
-	mylockers[lockerNum].resv = true;
-	mylockers[lockerNum].key = nextkey;
-
-
+	FillLocker(&mylockers[lockerNum], person, nextkey);
 	return lockerNum;
 }
 
@@ -108,16 +103,10 @@ int GetLocker(Locker mylockers[], const char* person)
 // Empties the locker for person after finding his or her lockerand the lockers of the people in the group if any.
 void PickupBag(Locker mylockers[], const char* person)
 {
-	volatile int key = GetLocker(mylockers, person);
+	int key = GetLocker(mylockers, person);
 	if (key >= 0 && key < NUM_LOCKERS)
 	{
-		if (mylockers[key].key >= 0)
-		{
-			PickupBag(mylockers, mylockers[mylockers[key].key].name);
-		}
-		mylockers[key].key = -1;
-		mylockers[key].resv = false;
-		memset(mylockers[key].name, '\0', LOCKER_NAME_LEN);
+		PickupBagAtIndex(mylockers, key);
 	}
 	else
 	{
@@ -130,27 +119,31 @@ void PickupBag(Locker mylockers[], const char* person)
 
 // Faster way of running PickupBag
 // After we've found the initial keyholder of a group, we know longer need to search by name because we have all the indexes
-void PickupBagAtIndex(Locker mylockers[], int key)
+void PickupBagAtIndex(Locker* lockers, int key)
 {
+	if (!lockers)
+	{
+		std::cout << "Error" << std::endl;
+		return;
+	}
 	if (key >= NUM_LOCKERS || key < 0)
 	{
 		std::cout << "Error" << std::endl;
 		// error
 	}
-	else if (!mylockers[key].resv)
+	else if (!lockers[key].resv)
 	{
 		std::cout << "Error" << std::endl;
 		// error
 	}
 	else
 	{
-		if (mylockers[key].key >= 0)
+		if (lockers[key].key >= 0)
 		{
-			PickupBagAtIndex(mylockers, key);
+			PickupBagAtIndex(lockers, lockers[key].key);
 		}
-		mylockers[key].key = -1;
-		mylockers[key].resv = false;
-		memset(mylockers[key].name, '\0', LOCKER_NAME_LEN);
+		std::cout << "Picking up " << lockers[key].name << "'s bag" << std::endl;
+		EmptyLocker(&lockers[key]);
 	}
 }
 
@@ -201,82 +194,59 @@ void ReadLockerInfo(Locker mylockers[], std::ifstream &infile, std::ofstream &ou
 	while (!infile.eof())
 	{
 		char buff[256];
-		std::cout << "Number available lockers: " << FindNoOfAvailableLockers(mylockers) << std::endl;
 		infile.getline(buff, 256);
 
 		// Make sure our line was valid
 		if (isalpha(buff[0]))
 		{
-			//std::cout << "LINE: " << std::string(buff) << std::endl;
 			std::istringstream ifss(buff);
 			std::string action;
 			int nArg = 0;
 			std::string name;
 			ifss >> action;
-			std::cout << "Action: " << action << "\t";
 			if (action == "drop")
 			{
 				ifss >> nArg;
-				std::cout << "Num Arg: " << nArg << "\t";
-				if (nArg <= 0)
+				// input no. validity check
+				if (nArg >= 1 && nArg <= NUM_LOCKERS)
 				{
-					std::cout << "ERROR: Can't " << action << " " << nArg << " bags off..." << std::endl;
-					continue;
-				}
-				else
-				{
-					int previousKey = -1;
-					if (nArg > 1)
+					int num_lockers_available = FindNoOfAvailableLockers(mylockers);
+					if (num_lockers_available >= nArg)
 					{
-						if (FindNoOfAvailableLockers(mylockers) >= nArg)
+						int previousKey = -1;
+						for (int x = 0; x < nArg; x++)
 						{
-							for (int x = 0; x < nArg; x++)
+							ifss >> name;
+							// here we process the bag with the name
+							std::cout << "Dropping off " << name << "'s bag" << std::endl;
+
+							if ((previousKey = DropBag(mylockers, name.c_str(), previousKey)) < 0)
 							{
-								ifss >> name;
-								// here we process the bag with the name
-								std::cout << "Name: " << name << "\t";
-								int nextKey = -1;
-								if ((nextKey = DropBag(mylockers, name.c_str(), previousKey)) < 0)
-								{
-									std::cout << "Error Couldn't add bag. There are no bags available." << std::endl;
-								}
-								else
-								{
-									previousKey = nextKey;
-									std::cout << "key value: " << nextKey << std::endl;
-								}
-								DisplayLockers(mylockers, outfile);
+								std::cout << "Error Couldn't add bag. There are no bags available." << std::endl;
 							}
 						}
 					}
 					else
 					{
-						if (FindNoOfAvailableLockers(mylockers) > 0)
-						{
-							ifss >> name;
-							std::cout << "Name: " << name << "\t";
-							DropBag(mylockers, name.c_str());
-							DisplayLockers(mylockers, outfile);
-						}
-						else
-						{
-							std::cout << "No lockers available? " << FindNoOfAvailableLockers(mylockers) << std::endl;
-						}
+						outfile << "Couldn't add " << nArg << (nArg > 1 ? " bags" : " bag") << ". Only " 
+							<< num_lockers_available << (num_lockers_available > 1 ? " lockers" : " locker") << " available.\n";
 					}
-
+				}
+				else
+				{
+					std::cout << "Invalid input. We don't support " << nArg << " lockers." << std::endl;
 				}
 			}
 			else if (action == "pickup")
 			{
 				ifss >> name;
-				std::cout << "Name: " << name << "\t";
 				PickupBag(mylockers, name.c_str());
-				DisplayLockers(mylockers, outfile);
 			}
 			else
 			{
 				// error unknown action input
 			}
+			DisplayLockers(mylockers, outfile);
 			std::cout << std::endl;
 		}
 	}
@@ -287,8 +257,31 @@ void InitializeLockers(Locker mylockers[])
 {
 	for (int ind = 0; ind < NUM_LOCKERS; ind++)
 	{
-		mylockers[ind].key = -1;
-		mylockers[ind].resv = false;
-		memset(mylockers[ind].name, '\0', LOCKER_NAME_LEN);
+		EmptyLocker(&mylockers[ind]);
 	}
+}
+
+
+void EmptyLocker(Locker* locker)
+{
+	if (!locker)
+	{
+		// err
+		return;
+	}
+	memset(locker->name, '\0', LOCKER_NAME_LEN);
+	locker->key = -1;
+	locker->resv = false;
+}
+
+void FillLocker(Locker* locker, const char* person, int nextKey = -1)
+{
+	if (!locker)
+	{
+		// err
+		return;
+	}
+	memcpy(locker->name, person, strlen(person));
+	locker->key = nextKey;
+	locker->resv = true;
 }

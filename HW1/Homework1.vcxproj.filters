@@ -31,8 +31,5 @@
     <Text Include="testInput.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="testOutput.txt">
-      <Filter>Source Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>

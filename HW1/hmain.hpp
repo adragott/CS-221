@@ -41,7 +41,7 @@ void PickupBag(Locker mylockers[], const char* person);
 
 // Faster way of running PickupBag
 // After we've found the initial keyholder of a group, we know longer need to search by name because we have all the indexes
-void PickupBagAtIndex(Locker mylockers[], int key);
+void PickupBagAtIndex(Locker* lockers, int key);
 
 // Displays mylockers in a simple formatand writes the result to an output stream named outfile.
 void DisplayLockers(Locker mylockers[], std::ofstream &outfile);
@@ -51,6 +51,10 @@ void ReadLockerInfo(Locker mylockers[], std::ifstream& infile, std::ofstream& ou
 
 // Initializes reserved field of each locker to false.
 void InitializeLockers(Locker mylockers[]);
+
+void EmptyLocker(Locker* locker);
+
+void FillLocker(Locker* locker, const char* person, int nextKey);
 
 
 #endif

@@ -27,7 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="testInput.txt" />
-    <Text Include="testOutput.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
