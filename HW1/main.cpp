@@ -6,11 +6,10 @@
 #include <sstream>
 #include <cstring>
 
-static Locker lockerBank[NUM_LOCKERS];
-
 
 int main(int argc, char** argv)
 {
+	static Locker lockerBank[NUM_LOCKERS];
 	std::string inputFile(INPUT_FILE_NAME);
 	std::string outputFile(OUTPUT_FILE_NAME);
 
@@ -32,6 +31,7 @@ int main(int argc, char** argv)
 		std::cout << "Exiting..." << std::endl;
 		return -1;
 	}
+
 
 	// empty all lockers
 	InitializeLockers(lockerBank);
