@@ -1,3 +1,15 @@
+/*
+Author:				Anthony Dragotta
+Username:			ad0097
+Assignment Number:	1
+
+ -- main.cpp --
+
+ This is the main source file for this assignment.
+
+ -- !main.cpp --
+*/
+
 #include "hmain.hpp"
 #include <string>
 #include <fstream>

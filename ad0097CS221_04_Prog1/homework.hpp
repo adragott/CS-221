@@ -1,4 +1,8 @@
 /* 
+Author:				Anthony Dragotta
+Username:			ad0097
+Assignment Number:	2
+
  -- homework.hpp --
 
  This is the project header file included in all of my homework assignments.

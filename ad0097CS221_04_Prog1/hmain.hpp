@@ -1,3 +1,18 @@
+/*
+Author:				Anthony Dragotta
+Username:			ad0097
+Assignment Number:	1
+
+ -- hmain.hpp --
+
+ This is the header file for main.cpp. 
+ It contains application specific header content relevant to this assignment.
+
+ -- !hmain.hpp --
+*/
+
+
+
 #ifndef _HMAIN_HPP_
 #define _HMAIN_HPP_
 
