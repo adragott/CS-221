@@ -168,6 +168,10 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 			// the codes match so we assign the real zip code
 			aZip = address.zip;
 		}
+		else
+		{
+
+		}
 	}
 	else
 	{
