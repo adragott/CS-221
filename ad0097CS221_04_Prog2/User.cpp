@@ -42,31 +42,169 @@ User::~User() {}
 
 void User::GetFirstName(char afname[], int code) const
 {
+	if (privacyCode & FNAME_bm)
+	{
+		if (privacyCode == code)
+		{
+			strcpy(afname, fname);
+		}
+		else
+		{
+			memset(afname, '\0', STR_FNAME_LEN);
+			memset(afname, '-', 5);
+		}
+	}
+	else
+	{
+		strcpy(afname, fname);
+	}
 }
 
 void User::GetLastName(char alname[], int code) const
 {
+	if (privacyCode & LNAME_bm)
+	{
+		if (privacyCode == code)
+		{
+			strcpy(alname, lname);
+		}
+		else
+		{
+			memset(alname, '\0', STR_LNAME_LEN);
+			memset(alname, '-', 5);
+		}
+	}
+	else
+	{
+		strcpy(alname, lname);
+	}
 }
 
 void User::GetMajor(char amajor[], int code) const
 {
+	if (privacyCode & MAJOR_bm)
+	{
+		if (privacyCode == code)
+		{
+			strcpy(amajor, major);
+		}
+		else
+		{
+			memset(amajor, '\0', STR_MAJOR_LEN);
+			memset(amajor, '-', 5);
+		}
+	}
+	else
+	{
+		strcpy(amajor, major);
+	}
 }
 
 void User::GetEmail(char anemail[], int code) const
 {
+	if (privacyCode & EMAIL_bm)
+	{
+		if (privacyCode == code)
+		{
+			strcpy(anemail, email);
+		}
+		else
+		{
+			memset(anemail, '\0', STR_EMAIL_LEN);
+			strcpy(anemail, "------@------");
+		}
+	}
+	else
+	{
+		strcpy(anemail, email);
+	}
 }
 
 void User::GetGender(char& agender, int code) const
 {
+	if (privacyCode & GENDER_bm)
+	{
+		if (privacyCode == code)
+		{
+			agender = gender;
+		}
+		else
+		{
+			agender = '&';
+		}
+	}
+	else
+	{
+		agender = gender;
+	}
 }
 
 DateType User::GetDateOfBirth(int code) const
 {
-	return DateType();
+	// variables to hold values while we assign values
+	// Section 2.3 in the textbook doesn't have transformers in its DateType class so I assumed I couldn't create them
+	int day;
+	int month;
+	int year;
+
+	// check if month from date of birth requires access code
+	if (privacyCode & MONTH_DOB_bm)
+	{
+		if (privacyCode == code)
+		{
+			month = dateOfBirth.GetMonth();
+		}
+		else
+		{
+			month = 0;
+		}
+	}
+	else
+	{
+		month = dateOfBirth.GetMonth();
+	}
+
+	// check if day from date of birth requires access code
+	if (privacyCode & DAY_DOB_bm)
+	{
+		if (privacyCode == code)
+		{
+			day = dateOfBirth.GetDay();
+		}
+		else
+		{
+			day = 0;
+		}
+	}
+	else
+	{
+		day = dateOfBirth.GetDay();
+	}
+
+	// check if year from date of birth requires access code
+	if (privacyCode & DAY_DOB_bm)
+	{
+		if (privacyCode == code)
+		{
+			year = dateOfBirth.GetYear();
+		}
+		else
+		{
+			year = 0;
+		}
+	}
+	else
+	{
+		year = dateOfBirth.GetYear();
+	}
+
+	// Return a DateType object with the values gathered
+	return DateType(month, day, year);
 }
 
 void User::GetDateOfBirth(DateType& aDateOfBirth, int code) const
 {
+	aDateOfBirth = GetDateOfBirth(code);
 }
 
 float User::GetGPA(int code) const
@@ -99,7 +237,9 @@ void User::GetGPA(float& aGPA, int code) const
 
 AddressType User::GetAddress(int code) const
 {
-	return AddressType();
+	AddressType retAddress;
+	GetAddress(retAddress, code);
+	return retAddress;
 }
 
 void User::GetAddress(AddressType& aAddress, int code) const
@@ -170,15 +310,92 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 		}
 		else
 		{
-
+			// bad code so zip is 0 to indicate a bad code
+			aZip = 0;
 		}
 	}
 	else
 	{
-		// don't require a code so we assign the actual city
+		// don't require a code so we assign the zip
 		aZip = address.zip;
 	}
 
+	// State
+	// check if state requires access code (aka locked)
+	if (privacyCode & STATE_bm)
+	{
+		// it requires access so now check if the code provided is equal to our privacy code
+		if (privacyCode == code)
+		{
+			// codes match so we assign the real state
+			strcpy(aState, address.state);
+		}
+		else
+		{
+			// codes don't match so we set the state to a string to indicate a bad code
+			memset(aState, '-', STR_STATE_LEN);
+		}
+	}
+	else
+	{
+		// code isnt required so we assign the state
+		strcpy(aState, address.state);
+	}
+
+}
+
+void User::SetFirstName(const char* afName)
+{
+	strcpy(fname, afName);
+}
+
+void User::SetLastName(const char* alName)
+{
+	strcpy(lname, alName);
+}
+
+void User::SetMajor(const char* amajor)
+{
+	strcpy(major, amajor);
+}
+
+void User::SetEmail(const char* anemail)
+{
+	strcpy(email, anemail);
+}
+
+void User::SetGender(char aGender)
+{
+	gender = aGender;
+}
+
+void User::SetDateOfBirth(DateType aDateOfBirth)
+{
+	dateOfBirth = aDateOfBirth;
+}
+
+void User::SetGPA(float aGPA)
+{
+	gpa = aGPA;
+}
+
+void User::SetAddress(AddressType aAddress)
+{
+	address = aAddress;
+}
+
+void User::SetAddress(char aStreetName[], int aStreetNo, char aCity[], int aZip, char aState[])
+{
+	strcpy(address.streetName, aStreetName);
+	strcpy(address.city, aCity);
+	strcpy(address.state, aState);
+	address.streetNo = aStreetNo;
+	address.zip = aZip;
+}
+
+void User::SetPrivacycode(int code)
+{
+	privacyCode = code;
 }
 
 void User::Display(int code) const

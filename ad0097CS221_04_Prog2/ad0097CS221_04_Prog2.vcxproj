@@ -125,11 +125,13 @@
   <ItemGroup>
     <ClCompile Include="DateType.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TestDriver.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DateType.h" />
     <ClInclude Include="homework.h" />
+    <ClInclude Include="TestDriver.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
