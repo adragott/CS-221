@@ -23,7 +23,4 @@ Assignment Number:	2
 #include <iostream>
 #include <cinttypes>
 
-
-
-
 #endif

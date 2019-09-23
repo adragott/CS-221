@@ -21,26 +21,45 @@ Assignment Number:	2
 #define STR_FNAME_LEN		30
 #define STR_LNAME_LEN		30
 #define STR_EMAIL_LEN		30
-#define STR_MAJOR_LEN		5
+#define STR_MAJOR_LEN		20
 #define STR_STATE_LEN		3
 
 static const int ACCESS_CODE = 8213479;
 
-enum PRIVACY_CODE
+// Bit positions for privacy codes
+enum PRIVACY_CODE_Pos
 {
-	PC_FNAME =			0x0,
-	PC_LNAME =			0x1,
-	PC_GENDER =			0x2,
-	PC_MAJOR =			0x3,
-	PC_STREET_INFO =	0x4,
-	PC_CITY =			0x5,
-	PC_ZIP =			0x6,
-	PC_STATE =			0x7,
-	PC_GPA =			0x8,
-	PC_MONTH_DOB =		0x9,
-	PC_DAY_DOB =		0x0A,
-	PC_YEAR_DOB =		0x0B,
-	PC_EMAIL =			0x0C
+	FNAME_bp =			0x0,
+	LNAME_bp =			0x1,
+	GENDER_bp =			0x2,
+	MAJOR_bp =			0x3,
+	STREET_INFO_bp =	0x4,
+	CITY_bp =			0x5,
+	ZIP_bp =			0x6,
+	STATE_bp =			0x7,
+	GPA_bp =			0x8,
+	MONTH_DOB_bp =		0x9,
+	DAY_DOB_bp =		0x0A,
+	YEAR_DOB_bp =		0x0B,
+	EMAIL_bp =			0x0C
+};
+
+// Bit masks for privacy codes
+enum PRIVACY_CODE_Mask
+{
+	FNAME_bm =			(1 << FNAME_bp),
+	LNAME_bm =			(1 << LNAME_bp),
+	GENDER_bm =			(1 << GENDER_bp),
+	MAJOR_bm =			(1 << MAJOR_bp),
+	STREET_INFO_bm =	(1 << STREET_INFO_bp),
+	CITY_bm =			(1 << CITY_bp),
+	ZIP_bm =			(1 << ZIP_bp),
+	STATE_bm =			(1 << STATE_bp),
+	GPA_bm =			(1 << GPA_bp),
+	MONTH_DOB_bm =		(1 << MONTH_DOB_bp),
+	DAY_DOB_bm =		(1 << DAY_DOB_bp),
+	YEAR_DOB_bm =		(1 << YEAR_DOB_bp),
+	EMAIL_bm =			(1 << EMAIL_bp),
 };
 
 struct AddressType
@@ -60,7 +79,7 @@ class User
 public:
 	User();
 	User(const char* argFname, const char* argLname, char argGender, const char* argMajor, AddressType argAddress, 
-		float argGPA, class DateType argDateOfBirth, char* argEmail, int argpCode);
+		float argGPA, DateType argDateOfBirth, const char* argEmail, int argpCode);
 	~User();
 	//for private fname, afname will be set to “------“ if incorrect code is provided
 	void GetFirstName(char afname[], int code = 0) const;
@@ -95,16 +114,18 @@ public:
 	void GetAddress(AddressType & aAddress, int code = 0) const;
 	
 	void GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZip, char aState[], int code = 0) const;
+
+	void Display(int code = 0) const;
 private:
 	char fname[STR_FNAME_LEN];
 	char lname[STR_LNAME_LEN];
 	char major[STR_MAJOR_LEN];
-	char gender;
-	AddressType address;
-	float gpa;
-	DateType dateOfBirth;
 	char email[STR_EMAIL_LEN];
+	char gender;
 	uint16_t privacyCode;
+	float gpa;
+	AddressType address;
+	DateType dateOfBirth;
 };
 
 #endif

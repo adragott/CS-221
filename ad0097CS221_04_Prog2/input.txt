@@ -1,0 +1,280 @@
+FirstName: John
+LastName: Rich
+Major: CS
+Gender: M
+Email: jrich@uah.edu
+StreetName: Triana
+StreetNo: 188
+City: Huntsville
+Zip: 35806
+State: AL
+GPA: 3.54
+BirthDate: 9 10 1996
+Privacy: 4095
+-----
+FirstName: Alice
+LastName: Rice
+Gender: F
+Major: MATH
+StreetName: Hughes
+StreetNo: 76
+City: Nashville
+Zip: 42163
+State: TN
+GPA: 3.65
+Email: alicerice@hotmail.com
+BirthDate: 8 15 1998
+Privacy: 0
+-----
+GPA: 2.97
+LastName: Reinhardt
+FirstName: Johnathan
+Major: CPE
+Gender: M
+Email: jrein@uah.edu
+StreetName: Sparkman
+StreetNo: 1500
+City: Huntsville
+Zip: 35816
+State: AL
+BirthDate: 6 15 1995
+Privacy: 6179
+-----
+FirstName: Timmothy
+LastName: McGee
+Major: CS
+Gender: M
+Email: timmy@uah.edu
+StreetName: Deborah
+StreetNo: 1249
+City: Huntsville
+Zip: 35801
+State: AL
+GPA: 4.00
+BirthDate: 9 15 1993
+Privacy: 6396
+-----
+FirstName: Jason
+LastName: Bull
+Major: BA
+Gender: M
+Email: jbull@uah.edu
+StreetName: Calvary
+StreetNo: 1800
+City: Huntsville
+Zip: 35816
+State: AL
+GPA: 3.54
+BirthDate: 7 29 1994
+Privacy: 1984
+
+-----
+FirstName: Marissa
+LastName: Morgan
+Major: BA
+Gender: F
+Email: mmorgan@uah.edu
+StreetName: Basalt
+StreetNo: 12463
+City: Houston
+Zip: 77077
+State: TX
+GPA: 3.54
+BirthDate: 5 1 1994
+Privacy: 6144
+-----
+FirstName: John
+LastName: Halsey
+Major: CPE
+Gender: M
+Email: john117@uah.edu
+StreetName: Reach
+StreetNo: 75
+City: Bethesda
+Zip: 20817
+State: MD
+GPA: 3.571
+BirthDate: 3 7 1996
+Privacy: 2047
+-----
+FirstName: Miranda
+LastName: Keyes
+Major: IS
+Gender: F
+Email: mirak@uah.edu
+StreetName: Dawn
+StreetNo: 178
+City: Huntsville
+Zip: 35802
+State: AL
+GPA: 3.8
+BirthDate: 2 28 1995
+Privacy: 511
+-----
+FirstName: Alice
+LastName: Abernathy
+Major: Biotechnology
+Gender: F
+Email: aabe@uah.edu
+StreetName: Jordan
+StreetNo: 666
+City: Gatlinburg
+Zip: 37738
+State: TN
+GPA: 4.0
+BirthDate: 4 17 1995
+Privacy: 127
+-----
+FirstName: Ada
+LastName: Wong
+Major: Law
+Gender: F
+Email: adaw@uah.edu
+StreetName: Pulaski
+StreetNo: 214
+City: Destin
+Zip: 35806
+State: FL
+GPA: 3.54
+BirthDate: 7 12 1993
+Privacy: 31
+-----
+FirstName: Jessica
+LastName: Jones
+Major: ECE
+Gender: M
+Email: jejjones@uah.edu
+StreetName: Pearman
+StreetNo: 1300
+City: Florence
+Zip: 45916
+State: SC
+GPA: 3.3
+BirthDate: 12 21 1994
+Privacy: 7
+-----
+FirstName: Jonathon
+LastName: Wick
+Major: CS
+Gender: M
+Email: jwick@uah.edu
+StreetName: Chandler
+StreetNo: 1100
+City: Huntsville
+Zip: 35806
+State: AL
+GPA: 3.7
+BirthDate: 2 2 1996
+Privacy: 1
+-----
+FirstName: Kelly
+LastName: Masters
+Major: IS
+Gender: F
+Email: kmast@uah.edu
+StreetName: Brooklyn
+StreetNo: 22
+City: SanAntonio
+Zip: 73014
+State: TX
+GPA: 4.00
+BirthDate: 2 14 1997
+Privacy: 3073
+-----
+FirstName: Jeremy
+LastName: Rickards
+Major: CS
+Gender: M
+Email: jrick@uah.edu
+StreetName: Pratt
+StreetNo: 17
+City: Northville
+Zip: 60811
+State: MI
+GPA: 3.54
+BirthDate: 9 21 1996
+Privacy: 769
+-----
+FirstName: Sarah
+LastName: Palmer
+Major: CPE
+Gender: F
+Email: spalm@uah.edu
+StreetName: Oldrailroad
+StreetNo: 188
+City: Fairbanks
+Zip: 99091
+State: AK
+GPA: 3.54
+BirthDate: 9 10 1996
+Privacy: 193
+-----
+FirstName: Fred
+LastName: Mercer
+Major: CSE
+Gender: M
+Email: fmerc@uah.edu
+StreetName: Millicas
+StreetNo: 231
+City: NewYork
+Zip: 10017
+State: NY
+GPA: 3.3
+BirthDate: 9 12 1995
+Privacy: 49
+-----
+FirstName: Conrad
+LastName: Smith
+Major: CS
+Gender: M
+Email: csmith@uah.edu
+StreetName: Trudy
+StreetNo: 17
+City: Birmingham
+Zip: 35516
+State: AL
+GPA: 3.54
+BirthDate: 9 30 1996
+Privacy: 13
+-----
+FirstName: Catherine
+LastName: Jones
+Major: CS
+Gender: F
+Email: cj@uah.edu
+StreetName: Bradford
+StreetNo: 91
+City: Anchorage
+Zip: 90922
+State: AK
+GPA: 3.71
+BirthDate: 12 19 1993
+Privacy: 4609
+-----
+FirstName: Ritchie
+LastName: Rich
+Major: CS
+Gender: M
+Email: rrich@uah.edu
+StreetName: Trunk
+StreetNo: 21
+City: Scottsboro
+Zip: 35836
+State: AL
+GPA: 3.54
+BirthDate: 1 10 1994
+Privacy: 2306
+-----
+FirstName: Rosalie
+LastName: Cullen
+Major: CS
+Gender: F
+Email: rcullen@uah.edu
+StreetName: Richmond
+StreetNo: 912
+City: Miami
+Zip: 61123
+State: FL
+GPA: 3.71
+BirthDate: 6 10 1995
+Privacy: 1090

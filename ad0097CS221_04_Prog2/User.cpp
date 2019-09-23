@@ -1,72 +1,44 @@
 #include "User.h"
 #include <cstring>
+#include <string>
+#include <iomanip>
 // AddressType Definitions
-AddressType::AddressType()
+AddressType::AddressType() : 
+	streetNo(-1), zip(-1)
 {
-
+	memset(streetName, '\0', STR_STREET_LEN);
+	memset(city, '\0', STR_CITY_LEN);
+	memset(state, '\0', STR_STATE_LEN);
 }
-c
+
 AddressType::AddressType(const char* argStreetName, const char* argCity, const char* argState, int argStreetNo, int argZip)
 	: streetNo(argStreetNo), zip(argZip)
 {
-	memset(streetName, '\0', 
 	strcpy(streetName, argStreetName);
+	strcpy(city, argCity);
+	strcpy(state, argState);
 }
 
-// User Definition
-User::User()
+
+User::User() : 
+	gender('0'), address(), gpa(-1.f), dateOfBirth(0, 0, 0), privacyCode((uint16_t)0)
 {
-
+	memset(fname, '\0', STR_FNAME_LEN);
+	memset(lname, '\0', STR_LNAME_LEN);
+	memset(major, '\0', STR_MAJOR_LEN);
+	memset(email, '\0', STR_EMAIL_LEN);
 }
 
-User::User(const char* argFname, const char* argLname, char argGender, const char* argMajor, AddressType argAddress, float argGPA, DateType argDateOfBirth, char* argEmail, int argpCode) : 
-	fname(), lname(), gender('0'), major(), address(argAddress), gpa(argGPA), dateOfBirth(argDateOfBirth), email(), privacyCode((uint16_t)argpCode)
+User::User(const char* argFname, const char* argLname, char argGender, const char* argMajor, AddressType argAddress, float argGPA, DateType argDateOfBirth, const char* argEmail, int argpCode) : 
+	fname(), lname(), gender(argGender), address(argAddress), major(), gpa(argGPA), dateOfBirth(argDateOfBirth), email(), privacyCode((uint16_t)argpCode)
 {
 	strcpy(fname, argFname);
 	strcpy(lname, argLname);
-
 	strcpy(major, argMajor);
 	strcpy(email, argEmail);
-	//// memcpy, memset not safe in non-POD types
-	//// so I am setting this cstrings manually
-	//// after each string copy is done, i check to make sure the index hasn't reached it's limit. 
-	//// If it has, the string is broken
-	//int ind = 0;
-	//// set first name
-	//for (const char* _tempStr = argFname; (*_tempStr && (ind < STR_FNAME_LEN)); *_tempStr++)
-	//{
-	//	fname[ind++] = *_tempStr;
-	//}
-	//ind = 0;
-	//// set last name
-	//for (const char* _tempStr = argLname; (*_tempStr && (ind < STR_LNAME_LEN)); *_tempStr++)
-	//{
-	//	lname[ind++] = *_tempStr;
-	//}
-	//
-	//ind = 0;
-	//// set major
-	//for (const char* _tempStr = argMajor; (*_tempStr && *(ind < STR_MAJOR_LEN)); *_tempStr++)
-	//{
-	//	major[ind++] = *_tempStr;
-	//}
-
-	//ind = 0;
-	//// set email
-	//for (const char* _tempStr = argEmail; (*_tempStr && (ind < STR_EMAIL_LEN)); *_tempStr++)
-	//{
-	//	email[ind++] = *_tempStr;
-	//}
-
-	std::cout << fname << std::endl;
-	std::cout << lname << std::endl;
-	std::cout << major << std::endl;
 }
 
-User::~User()
-{
-
-}
+User::~User() {}
 
 void User::GetFirstName(char afname[], int code) const
 {
@@ -99,11 +71,30 @@ void User::GetDateOfBirth(DateType& aDateOfBirth, int code) const
 
 float User::GetGPA(int code) const
 {
-	return 0.0f;
+	// check if gpa requires access (aka locked)
+	if (privacyCode & GPA_bm)
+	{
+		// check if the code provided is the code we require for access
+		if (privacyCode == code)
+		{
+			// the code matched so return the users gpa
+			return gpa;
+		}
+		else
+		{
+			return -1.0f;
+		}
+	}
+	// if its not locked, we can give the value
+	else
+	{
+		return gpa;
+	}
 }
 
 void User::GetGPA(float& aGPA, int code) const
 {
+	aGPA = GetGPA(code);
 }
 
 AddressType User::GetAddress(int code) const
@@ -113,8 +104,93 @@ AddressType User::GetAddress(int code) const
 
 void User::GetAddress(AddressType& aAddress, int code) const
 {
+	GetAddress(aAddress.streetName, aAddress.streetNo, aAddress.city, aAddress.zip, aAddress.state, code);
 }
 
 void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZip, char aState[], int code) const
 {
+	// Street Info (Street Number and Street Name)
+	// check if street info requires access (aka locked)
+	if (privacyCode & STREET_INFO_bm)
+	{
+		// it requires access so now check if the code provided is equal to our privacy code
+		if (privacyCode == code)
+		{
+			// the codes match so we assign the real values
+			strcpy(aStreetName, address.streetName);
+			aStreetNo = address.streetNo;
+		}
+		else
+		{
+			// codes didn't match so we assign bad values to indicate a bad code
+			memset(aStreetName, '\0', STR_STREET_LEN);
+			memset(aStreetName, '-', 5);
+			aStreetNo = 0;
+		}
+	}
+	else
+	{
+		// don't require a code so we assign the real values
+		strcpy(aStreetName, address.streetName);
+		aStreetNo = address.streetNo;
+	}
+
+	// City
+	// check if city requires access (aka locked)
+	if (privacyCode & CITY_bm)
+	{
+		// it requires access so now check if the code provided is equal to our privacy code
+		if (privacyCode == code)
+		{
+			// the codes match so we assign the city its value
+			strcpy(aCity, address.city);
+		}
+		else
+		{
+			// bad access code so we assign a bad city to indicate a bad code
+			memset(aCity, '\0', STR_CITY_LEN);
+			memset(aCity, '-', 5);
+		}
+	}
+	else
+	{
+		// don't require a code so we assign the actual city
+		strcpy(aCity, address.city);
+	}
+
+	// Zip
+	// check if zip requires access code (aka locked)
+	if (privacyCode & ZIP_bm)
+	{
+		// it requires access so now check if the code provided is equal to our privacy code
+		if (privacyCode == code)
+		{
+			// the codes match so we assign the real zip code
+			aZip = address.zip;
+		}
+	}
+	else
+	{
+		// don't require a code so we assign the actual city
+		aZip = address.zip;
+	}
+
+}
+
+void User::Display(int code) const
+{
+	std::cout << "First name: " << fname << std::endl;
+	std::cout << "Last name: " << lname << std::endl;
+	std::cout << "Gender: " << gender << std::endl;
+	std::cout << "Major: " << major << std::endl;
+	std::cout << "Street Info: " << address.streetNo << " " << address.streetName << std::endl;
+	std::cout << "City: " << address.city << std::endl;
+	std::cout << "State: " << address.state << std::endl;
+	std::cout << "ZIP: " << address.zip << std::endl << std::endl;
+	std::cout << "GPA: " << std::fixed << std::setprecision(2) << gpa << std::endl;
+	std::cout << "Date of birth: " << std::setw(2) << std::setfill('0') << dateOfBirth.GetMonth() << "/" << dateOfBirth.GetDay() << "/" <<
+		std::setw(4) << dateOfBirth.GetYear() << std::endl;
+	std::cout << "Email: " << email << std::endl;
+	std::cout << "Privacy Code: " << privacyCode << std::endl;
+	std::cout << std::endl;
 }
