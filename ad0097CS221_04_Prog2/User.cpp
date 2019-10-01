@@ -2,6 +2,7 @@
 #include <cstring>
 #include <string>
 #include <iomanip>
+#include <fstream>
 // AddressType Definitions
 AddressType::AddressType() : 
 	streetNo(-1), zip(-1)
@@ -414,4 +415,21 @@ void User::Display(int code) const
 	std::cout << "Email: " << email << std::endl;
 	std::cout << "Privacy Code: " << privacyCode << std::endl;
 	std::cout << std::endl;
+}
+
+void User::Display(std::ofstream& outFile, int code) const
+{
+	if (!outFile.good())
+	{
+		std::cout << "Error opening output file at line " << __LINE__ << ".\n";
+	}
+	else
+	{
+
+	}
+}
+
+void User::Implementer(char name[]) const
+{
+	strcpy(name, "Anthony Dragotta"); // Replace dashes with your first and last name.
 }

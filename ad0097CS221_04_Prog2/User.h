@@ -15,7 +15,7 @@ Assignment Number:	2
 #pragma once
 #include "homework.h"
 #include "DateType.h"
-
+#include <fstream>
 #define STR_STREET_LEN		30
 #define STR_CITY_LEN		30
 #define STR_FNAME_LEN		30
@@ -62,6 +62,7 @@ enum PRIVACY_CODE_Mask
 	EMAIL_bm =			(1 << EMAIL_bp),
 };
 
+
 struct AddressType
 {
 public:
@@ -95,7 +96,7 @@ public:
 	//for private DOB, set the corresponding field to 0 if incorrect code is provided
 	DateType GetDateOfBirth(int code = 0) const;
 	//for private DOB, set the corresponding field to 0 if incorrect code is provided
-	void GetDateOfBirth(DateType & aDateOfBirth, int code = 0) const;
+	void GetDateOfBirth(DateType &aDateOfBirth, int code = 0) const;
 	//for private GPA, return -1.0 if incorrect code is provided
 	float GetGPA(int code = 0) const;
 	//for private GPA, set aGPA to - 1.0 if incorrect code is provided
@@ -103,7 +104,7 @@ public:
 	//for private address fields, for string fields return “------“, for integer fields to 0 if incorrect code is provided
 	AddressType GetAddress(int code = 0) const;
 	//for private address fields, return “------“ for string fields and 0 for integer fields to 0 if incorrect code is provided
-	void GetAddress(AddressType & aAddress, int code = 0) const;
+	void GetAddress(AddressType &aAddress, int code = 0) const;
 
 	void GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZip, char aState[], int code = 0) const;
 
@@ -119,6 +120,9 @@ public:
 	void SetPrivacycode(int code);
 
 	void Display(int code = 0) const;
+	void Display(std::ofstream &outFile, int code = 0) const;
+
+	void Implementer(char name[]) const;
 private:
 	char fname[STR_FNAME_LEN];
 	char lname[STR_LNAME_LEN];

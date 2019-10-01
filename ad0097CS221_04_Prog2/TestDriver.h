@@ -18,6 +18,9 @@ public:
 	int Populate(const char* input, User users[]);
 	void Test(User users[], int count);
 	void Test(std::ofstream& outFile, User users[], int count);
+
+private:
+	static const int TRUE_CODE = 8213479;
 };
 
 #endif
