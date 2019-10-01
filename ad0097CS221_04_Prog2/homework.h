@@ -24,7 +24,8 @@ Assignment Number:	2
 #include <cinttypes>
 
 // IO file names
-static const char* INPUT_FILE_NAME = "C:\\tmp\\cs221\\hwsamplefile.txt";
-static const char* OUTPUT_FILE_NAME = "output.txt";
+//static const char* INPUT_FILE_NAME = "C:\\tmp\\cs221\\hwsamplefile.txt";
+const char* INPUT_FILE_NAME = "input.txt";
+const char* OUTPUT_FILE_NAME = "output.txt";
 
 #endif

@@ -336,7 +336,7 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 			
 			// codes don't match so we set the state to a string to indicate a bad code
 			memset(aState, '\0', STR_STATE_LEN);
-			memset(aState, '-', STR_STATE_LEN);
+			memset(aState, '-', STR_STATE_LEN - 1);
 		}
 	}
 	else

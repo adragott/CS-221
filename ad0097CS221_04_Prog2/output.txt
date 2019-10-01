@@ -3,7 +3,7 @@ First name:    -----
 Last name:     -----
 Gender:        &
 Major:         -----
-Address:       0 ----- ----- 0 ----
+Address:       0 ----- ----- 0 --
 GPA:           -1.00
 Date of birth: 09/10/1996
 Email:         jrich@uah.edu
@@ -30,7 +30,7 @@ First name:    Timmothy
 Last name:     McGee
 Gender:        &
 Major:         -----
-Address:       0 ----- ----- 0 ----
+Address:       0 ----- ----- 0 --
 GPA:           4.00
 Date of birth: 09/15/1993
 Email:         ------@------
@@ -39,7 +39,7 @@ First name:    Jason
 Last name:     Bull
 Gender:        M
 Major:         BA
-Address:       1800 Calvary Huntsville 0 ----
+Address:       1800 Calvary Huntsville 0 --
 GPA:           -1.00
 Date of birth: 07/29/1994
 Email:         jbull@uah.edu
@@ -57,7 +57,7 @@ First name:    -----
 Last name:     -----
 Gender:        &
 Major:         -----
-Address:       0 ----- ----- 0 ----
+Address:       0 ----- ----- 0 --
 GPA:           -1.00
 Date of birth: 03/07/1996
 Email:         john117@uah.edu
@@ -66,7 +66,7 @@ First name:    -----
 Last name:     -----
 Gender:        &
 Major:         -----
-Address:       0 ----- ----- 0 ----
+Address:       0 ----- ----- 0 --
 GPA:           -1.00
 Date of birth: 02/28/1995
 Email:         mirak@uah.edu

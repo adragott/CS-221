@@ -146,6 +146,8 @@ int TestDriver::Populate(const char* input, User users[])
 	return user_num;
 }
 
+// need to check and make sure all functions work
+// basically testing this classes functionality
 void TestDriver::Test(User users[], int count)
 {
 	for (int ind = 0; ind < count; ind++)

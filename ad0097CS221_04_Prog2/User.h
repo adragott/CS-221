@@ -22,7 +22,7 @@ Assignment Number:	2
 #define STR_LNAME_LEN		30
 #define STR_EMAIL_LEN		30
 #define STR_MAJOR_LEN		20
-#define STR_STATE_LEN		4
+#define STR_STATE_LEN		3
 
 static const int ACCESS_CODE = 8213479;
 
