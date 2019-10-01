@@ -3,11 +3,10 @@
 #include "TestDriver.h"
 
 #include <fstream>
-// IO file names
-static const char* INPUT_FILE_NAME = "input.txt";
-static const char* OUTPUT_FILE_NAME = "output.txt";
+
 
 using namespace std;
+
 void CompileTest(User& user, char fn[], char ln[], char mjr[], char eml[], char& gn, DateType& db, float& gp1, AddressType& adt1, char snm[], int& sno, char ct[], int& zp, char st[], int code)
 {
 	int i = 0, cnt;
@@ -44,6 +43,7 @@ void CompileTest(User& user, char fn[], char ln[], char mjr[], char eml[], char&
 	user.GetAddress(adt1, code);
 	user.GetGPA(gp1, code);
 }
+
 int main(int argc, char** argv)
 {
 	//User me("Penguin", "Zerenghetti", 'm', "CompSci", AddressType("street", "huntsville", "AL", 200, 35806), 4.0f, DateType(6, 20, 1997), "penguin@hotmail.com", 8193);
@@ -55,7 +55,7 @@ int main(int argc, char** argv)
 
 	TestDriver tester;
 	User users[50];
-	tester.Populate(INPUT_FILE_NAME, users);
+	int user_count = tester.Populate(INPUT_FILE_NAME, users);
 
 	std::ofstream outFile;
 	outFile.open(OUTPUT_FILE_NAME);
@@ -67,6 +67,12 @@ int main(int argc, char** argv)
 		std::cout << "Exiting..." << std::endl;
 		return -1;
 	}
+
+	tester.Test(users, user_count);
+	tester.Test(outFile, users, user_count);
+
+	outFile.clear();
+	outFile.close();
 	
 	return 0;
 }

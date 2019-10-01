@@ -34,7 +34,7 @@ int TestDriver::Populate(const char* input, User users[])
 		char state[STR_STATE_LEN];
 		char city[STR_CITY_LEN];
 		int strnum = 0;
-		char strname[30];
+		char strname[STR_STREET_LEN];
 		int zip = 0;
 
 		// There will always be 13 fields + 1 separator
@@ -98,6 +98,8 @@ int TestDriver::Populate(const char* input, User users[])
 				}
 				else if (field_name == std::string("StreetName"))
 				{
+					// ignore initial space
+					ifss.ignore(30, ' ');
 					// getline instead of >> in case the street name has spaces
 					ifss.getline(strname, STR_STREET_LEN);
 
@@ -108,11 +110,14 @@ int TestDriver::Populate(const char* input, User users[])
 				}
 				else if (field_name == std::string("City"))
 				{
+					// ignore initial space
+					ifss.ignore(30, ' ');
 					// getline instead of >> in case the city has spaces
 					ifss.getline(city, STR_CITY_LEN);
 				}
 				else if (field_name == std::string("State"))
 				{
+					
 					ifss >> state;
 				}
 				else if (field_name == std::string("Zip"))
@@ -126,7 +131,7 @@ int TestDriver::Populate(const char* input, User users[])
 			}
 			else if(read_buffer[0] == '-' && line_num == 13)
 			{
-				std::cout << read_buffer << std::endl;
+				// debugging checkpoint
 			}
 			else
 			{
@@ -135,21 +140,34 @@ int TestDriver::Populate(const char* input, User users[])
 			}
 			line_num++;
 		}
-		users[user_num].SetAddress(AddressType(strname, city, state, strnum, zip));
+		users[user_num++].SetAddress(AddressType(strname, city, state, strnum, zip));
 	}
-	std::cout << "Number of users: " << user_num << std::endl;
-	return 0;
+	iStream.close();
+	return user_num;
 }
 
 void TestDriver::Test(User users[], int count)
 {
-	std::ofstream oStream;
-	Test(oStream, users, count);
+	for (int ind = 0; ind < count; ind++)
+	{
+		users[ind].Display(TRUE_CODE);
+	}
 }
 
+// preconditions: 
+// outFile is an already opened stream that is in a good state
+// users is not null
 void TestDriver::Test(std::ofstream& outFile, User users[], int count)
 {
+	// make sure stream is A OKAY
+	if (!outFile.is_open() || !outFile.good())
+	{
+		std::cout << "Output stream isn't open... Exiting...\n";
+		exit(1);
+	}
 
-
-
+	for (int ind = 0; ind < count; ind++)
+	{
+		users[ind].Display(outFile, TRUE_CODE);
+	}
 }

@@ -333,7 +333,9 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 		}
 		else
 		{
+			
 			// codes don't match so we set the state to a string to indicate a bad code
+			memset(aState, '\0', STR_STATE_LEN);
 			memset(aState, '-', STR_STATE_LEN);
 		}
 	}
@@ -401,20 +403,7 @@ void User::SetPrivacycode(int code)
 
 void User::Display(int code) const
 {
-	std::cout << "First name: " << fname << std::endl;
-	std::cout << "Last name: " << lname << std::endl;
-	std::cout << "Gender: " << gender << std::endl;
-	std::cout << "Major: " << major << std::endl;
-	std::cout << "Street Info: " << address.streetNo << " " << address.streetName << std::endl;
-	std::cout << "City: " << address.city << std::endl;
-	std::cout << "State: " << address.state << std::endl;
-	std::cout << "ZIP: " << address.zip << std::endl << std::endl;
-	std::cout << "GPA: " << std::fixed << std::setprecision(2) << gpa << std::endl;
-	std::cout << "Date of birth: " << std::setw(2) << std::setfill('0') << dateOfBirth.GetMonth() << "/" << dateOfBirth.GetDay() << "/" <<
-		std::setw(4) << dateOfBirth.GetYear() << std::endl;
-	std::cout << "Email: " << email << std::endl;
-	std::cout << "Privacy Code: " << privacyCode << std::endl;
-	std::cout << std::endl;
+	LocalDisplay(std::cout, code);
 }
 
 void User::Display(std::ofstream& outFile, int code) const
@@ -425,11 +414,45 @@ void User::Display(std::ofstream& outFile, int code) const
 	}
 	else
 	{
-
+		LocalDisplay(outFile, code);
 	}
 }
 
 void User::Implementer(char name[]) const
 {
 	strcpy(name, "Anthony Dragotta"); // Replace dashes with your first and last name.
+}
+
+void User::LocalDisplay(std::ostream& outStream, int code) const
+{
+	char fname[STR_FNAME_LEN];
+	char lname[STR_LNAME_LEN];
+	char major[STR_MAJOR_LEN];
+	char email[STR_EMAIL_LEN];
+	char gender;
+	AddressType addr;
+
+	GetFirstName(fname, code);
+	GetLastName(lname, code);
+	GetMajor(major, code);
+	GetEmail(email, code);
+	GetAddress(addr, code);
+	GetGender(gender, code);
+
+	outStream << std::string(25, '-') << std::endl;
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "First name:" << fname << "\n";
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "Last name:" << lname << "\n";
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "Gender:" << gender << "\n";
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "Major:" << major << "\n";
+	
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "Address:" << std::right << addr.streetNo << " " <<
+		addr.streetName << " " << addr.city << " " << addr.zip << " " << addr.state << "\n";
+	
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "GPA:" << std::right << std::fixed << std::setprecision(2) << GetGPA(code) << "\n";
+	
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "Date of birth:" << std::right << std::setfill('0') <<
+		std::setw(2) << dateOfBirth.GetMonth() << "/" << std::setw(2) << dateOfBirth.GetDay() << "/" << std::setw(4) <<
+		dateOfBirth.GetYear() << "\n";
+	
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "Email: " << email << std::endl;
 }

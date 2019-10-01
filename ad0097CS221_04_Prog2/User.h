@@ -22,7 +22,7 @@ Assignment Number:	2
 #define STR_LNAME_LEN		30
 #define STR_EMAIL_LEN		30
 #define STR_MAJOR_LEN		20
-#define STR_STATE_LEN		3
+#define STR_STATE_LEN		4
 
 static const int ACCESS_CODE = 8213479;
 
@@ -133,6 +133,9 @@ private:
 	float gpa;
 	AddressType address;
 	DateType dateOfBirth;
+	// Function that allows me to put the guts of my code here so the user can call one of the two public variants
+	// and I can call this
+	void LocalDisplay(std::ostream &outStream, int code = 0) const;
 };
 
 #endif

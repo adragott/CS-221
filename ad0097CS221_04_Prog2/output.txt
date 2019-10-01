@@ -1,0 +1,99 @@
+-------------------------
+First name:    -----
+Last name:     -----
+Gender:        &
+Major:         -----
+Address:       0 ----- ----- 0 ----
+GPA:           -1.00
+Date of birth: 09/10/1996
+Email:         jrich@uah.edu
+-------------------------
+First name:    Alice
+Last name:     Rice
+Gender:        F
+Major:         MATH
+Address:       76 Hughes Nashville 42163 TN
+GPA:           3.65
+Date of birth: 08/15/1998
+Email:         alicerice@hotmail.com
+-------------------------
+First name:    -----
+Last name:     -----
+Gender:        M
+Major:         CPE
+Address:       1500 Sparkman ----- 35816 AL
+GPA:           2.97
+Date of birth: 06/15/1995
+Email:         ------@------
+-------------------------
+First name:    Timmothy
+Last name:     McGee
+Gender:        &
+Major:         -----
+Address:       0 ----- ----- 0 ----
+GPA:           4.00
+Date of birth: 09/15/1993
+Email:         ------@------
+-------------------------
+First name:    Jason
+Last name:     Bull
+Gender:        M
+Major:         BA
+Address:       1800 Calvary Huntsville 0 ----
+GPA:           -1.00
+Date of birth: 07/29/1994
+Email:         jbull@uah.edu
+-------------------------
+First name:    Marissa
+Last name:     Morgan
+Gender:        F
+Major:         BA
+Address:       12463 Basalt Houston 77077 TX
+GPA:           3.54
+Date of birth: 05/01/1994
+Email:         ------@------
+-------------------------
+First name:    -----
+Last name:     -----
+Gender:        &
+Major:         -----
+Address:       0 ----- ----- 0 ----
+GPA:           -1.00
+Date of birth: 03/07/1996
+Email:         john117@uah.edu
+-------------------------
+First name:    -----
+Last name:     -----
+Gender:        &
+Major:         -----
+Address:       0 ----- ----- 0 ----
+GPA:           -1.00
+Date of birth: 02/28/1995
+Email:         mirak@uah.edu
+-------------------------
+First name:    -----
+Last name:     -----
+Gender:        &
+Major:         -----
+Address:       0 ----- ----- 0 TN
+GPA:           4.00
+Date of birth: 04/17/1995
+Email:         aabe@uah.edu
+-------------------------
+First name:    -----
+Last name:     -----
+Gender:        &
+Major:         -----
+Address:       0 ----- Destin 35806 FL
+GPA:           3.54
+Date of birth: 07/12/1993
+Email:         adaw@uah.edu
+-------------------------
+First name:    -----
+Last name:     -----
+Gender:        &
+Major:         ECE
+Address:       1300 Pearman Florence 45916 SC
+GPA:           3.30
+Date of birth: 12/21/1994
+Email:         jejjones@uah.edu
