@@ -25,20 +25,13 @@ int TestDriver::Populate(const char* input, User users[])
 		return -1;
 	}
 	int user_num = 0;
-	while (!iStream.eof() && user_num <= 10)
+	while (!iStream.eof())
 	{
 		char read_buffer[256];
 		int line_num = 0;
 
-		// Address variables here since they need to be added as a group
-		char state[STR_STATE_LEN];
-		char city[STR_CITY_LEN];
-		int strnum = 0;
-		char strname[STR_STREET_LEN];
-		int zip = 0;
-
-		// There will always be 13 fields + 1 separator
-		while(line_num < 14 && !iStream.eof())
+		// There will always be 9 fields + 1 separator
+		while(line_num <= 9 && !iStream.eof())
 		{
 			memset(read_buffer, '\0', 256);
 			iStream.getline(read_buffer, 256);
@@ -48,7 +41,11 @@ int TestDriver::Populate(const char* input, User users[])
 				std::string field_name;
 				ifss >> field_name;
 				field_name = field_name.substr(0, field_name.find(":"));
-				if (field_name == std::string("FirstName"))
+				if (iStream.eof())
+				{
+					break;
+				}
+				else if (field_name == std::string("FirstName"))
 				{
 					std::string fname;
 					ifss >> fname;
@@ -96,40 +93,23 @@ int TestDriver::Populate(const char* input, User users[])
 					ifss >> privacy;
 					users[user_num].SetPrivacycode(privacy);
 				}
-				else if (field_name == std::string("StreetName"))
+				else if (field_name == std::string("Address"))
 				{
-					// ignore initial space
-					ifss.ignore(30, ' ');
-					// getline instead of >> in case the street name has spaces
-					ifss.getline(strname, STR_STREET_LEN);
+					int temp_zip = 0;
+					int temp_strt_no = 0;
+					std::string temp_strt_name;
+					std::string temp_city;
+					std::string temp_state;
 
-				}
-				else if (field_name == std::string("StreetNo"))
-				{
-					ifss >> strnum;
-				}
-				else if (field_name == std::string("City"))
-				{
-					// ignore initial space
-					ifss.ignore(30, ' ');
-					// getline instead of >> in case the city has spaces
-					ifss.getline(city, STR_CITY_LEN);
-				}
-				else if (field_name == std::string("State"))
-				{
-					
-					ifss >> state;
-				}
-				else if (field_name == std::string("Zip"))
-				{
-					ifss >> zip;
+					ifss >> temp_strt_no >> temp_strt_name >> temp_city >> temp_zip >> temp_state;
+					users[user_num].SetAddress(AddressType(temp_strt_name.c_str(), temp_city.c_str(), temp_state.c_str(), temp_strt_no, temp_zip));
 				}
 				else
 				{
 					std::cout << "caught bad string: " << field_name << std::endl;
 				}
 			}
-			else if(read_buffer[0] == '-' && line_num == 13)
+			else if(read_buffer[0] == '-')
 			{
 				// debugging checkpoint
 			}
@@ -140,7 +120,12 @@ int TestDriver::Populate(const char* input, User users[])
 			}
 			line_num++;
 		}
-		users[user_num++].SetAddress(AddressType(strname, city, state, strnum, zip));
+
+		// Only increase the number of users if we didn't reach EOF
+		if (!iStream.eof())
+		{
+			user_num++;
+		}
 	}
 	iStream.close();
 	return user_num;

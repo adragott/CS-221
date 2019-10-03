@@ -24,24 +24,38 @@ Assignment Number:	2
 #define STR_MAJOR_LEN		20
 #define STR_STATE_LEN		3
 
-static const int ACCESS_CODE = 8213479;
-
 // Bit positions for privacy codes
+//enum PRIVACY_CODE_Pos
+//{
+//	FNAME_bp =			0x0,
+//	LNAME_bp =			0x1,
+//	GENDER_bp =			0x2,
+//	MAJOR_bp =			0x3,
+//	STREET_INFO_bp =	0x4,
+//	CITY_bp =			0x5,
+//	ZIP_bp =			0x6,
+//	STATE_bp =			0x7,
+//	GPA_bp =			0x8,
+//	MONTH_DOB_bp =		0x9,
+//	DAY_DOB_bp =		0x0A,
+//	YEAR_DOB_bp =		0x0B,
+//	EMAIL_bp =			0x0C
+//};
 enum PRIVACY_CODE_Pos
 {
-	FNAME_bp =			0x0,
-	LNAME_bp =			0x1,
-	GENDER_bp =			0x2,
-	MAJOR_bp =			0x3,
-	STREET_INFO_bp =	0x4,
-	CITY_bp =			0x5,
-	ZIP_bp =			0x6,
-	STATE_bp =			0x7,
-	GPA_bp =			0x8,
-	MONTH_DOB_bp =		0x9,
-	DAY_DOB_bp =		0x0A,
-	YEAR_DOB_bp =		0x0B,
-	EMAIL_bp =			0x0C
+	EMAIL_bp = 0x0,
+	YEAR_DOB_bp = 0x1,
+	DAY_DOB_bp = 0x2,
+	MONTH_DOB_bp = 0x3,
+	GPA_bp = 0x4,
+	STATE_bp = 0x5,
+	ZIP_bp = 0x6,
+	CITY_bp = 0x7,
+	STREET_INFO_bp = 0x8,
+	MAJOR_bp = 0x9,
+	GENDER_bp = 0x0A,
+	LNAME_bp = 0x0B,
+	FNAME_bp = 0x0C
 };
 
 // Bit masks for privacy codes
@@ -68,9 +82,9 @@ struct AddressType
 public:
 	AddressType();
 	AddressType(const char* argStreetName, const char* argCity, const char* argState, int argStreetNo, int argZip);
-	char streetName[STR_STREET_LEN];
-	char city[STR_CITY_LEN];
-	char state[STR_STATE_LEN];
+	char streetName[STR_STREET_LEN + 1];
+	char city[STR_CITY_LEN + 1];
+	char state[STR_STATE_LEN + 1];
 	int streetNo;
 	int zip;
 };
@@ -124,14 +138,23 @@ public:
 
 	void Implementer(char name[]) const;
 private:
-	char fname[STR_FNAME_LEN];
-	char lname[STR_LNAME_LEN];
-	char major[STR_MAJOR_LEN];
-	char email[STR_EMAIL_LEN];
+	// First name of user
+	char fname[STR_FNAME_LEN + 1];
+	// Last name of user
+	char lname[STR_LNAME_LEN + 1];
+	// Major of user
+	char major[STR_MAJOR_LEN + 1];
+	// Email of user
+	char email[STR_EMAIL_LEN + 1];
+	// Gender of user
 	char gender;
-	uint16_t privacyCode;
+	// Privacy code for user -- used to indicate accessibility of user's information
+	int privacyCode;
+	// GPA of user
 	float gpa;
+	// Address of user
 	AddressType address;
+	// Date of birth of user
 	DateType dateOfBirth;
 	// Function that allows me to put the guts of my code here so the user can call one of the two public variants
 	// and I can call this

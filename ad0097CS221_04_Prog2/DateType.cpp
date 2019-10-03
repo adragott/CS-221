@@ -1,6 +1,7 @@
 #include "DateType.h"
 
 
+DateType::DateType() : month(0), day(0), year(0) {}
 DateType::DateType(int newMonth, int newDay, int newYear) : month(newMonth), day(newDay), year(newYear) {}
 DateType::~DateType() {}
 

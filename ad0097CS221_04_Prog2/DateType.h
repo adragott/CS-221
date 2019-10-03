@@ -8,6 +8,7 @@ enum RelationType {LESS, EQUAL, GREATER};
 class DateType
 {
 public:
+	DateType();
 	DateType(int newMonth, int newDay, int newYear);
 	~DateType();
 	void Initialize(int newMonth, int newDay, int newYear);

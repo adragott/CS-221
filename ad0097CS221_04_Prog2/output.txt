@@ -1,12 +1,15 @@
+Anthony Dragotta
+CS-221-04
+Bonus Assignment #1
 -------------------------
-First name:    -----
-Last name:     -----
+First name:    John
+Last name:     ------
 Gender:        &
-Major:         -----
-Address:       0 ----- ----- 0 --
+Major:         ------
+Address:       0 ------ ------ 0 --
 GPA:           -1.00
-Date of birth: 09/10/1996
-Email:         jrich@uah.edu
+Date of birth: 00/00/0000
+Email:         ------@------
 -------------------------
 First name:    Alice
 Last name:     Rice
@@ -17,83 +20,164 @@ GPA:           3.65
 Date of birth: 08/15/1998
 Email:         alicerice@hotmail.com
 -------------------------
-First name:    -----
-Last name:     -----
+First name:    ------
+Last name:     ------
 Gender:        M
 Major:         CPE
-Address:       1500 Sparkman ----- 35816 AL
+Address:       1500 Sparkman Huntsville 35816 --
 GPA:           2.97
-Date of birth: 06/15/1995
+Date of birth: 06/15/0000
 Email:         ------@------
 -------------------------
-First name:    Timmothy
-Last name:     McGee
-Gender:        &
-Major:         -----
-Address:       0 ----- ----- 0 --
-GPA:           4.00
-Date of birth: 09/15/1993
-Email:         ------@------
+First name:    ------
+Last name:     ------
+Gender:        M
+Major:         CS
+Address:       1249 Deborah ------ 0 --
+GPA:           -1.00
+Date of birth: 00/00/1993
+Email:         timmy@uah.edu
 -------------------------
 First name:    Jason
 Last name:     Bull
-Gender:        M
-Major:         BA
-Address:       1800 Calvary Huntsville 0 --
-GPA:           -1.00
+Gender:        &
+Major:         ------
+Address:       0 ------ ------ 0 AL
+GPA:           3.54
 Date of birth: 07/29/1994
 Email:         jbull@uah.edu
 -------------------------
-First name:    Marissa
-Last name:     Morgan
+First name:    ------
+Last name:     ------
 Gender:        F
 Major:         BA
 Address:       12463 Basalt Houston 77077 TX
 GPA:           3.54
 Date of birth: 05/01/1994
+Email:         mmorgan@uah.edu
+-------------------------
+First name:    John
+Last name:     Halsey
+Gender:        &
+Major:         ------
+Address:       0 ------ ------ 0 --
+GPA:           -1.00
+Date of birth: 00/00/0000
 Email:         ------@------
 -------------------------
-First name:    -----
-Last name:     -----
-Gender:        &
-Major:         -----
-Address:       0 ----- ----- 0 --
+First name:    Miranda
+Last name:     Keyes
+Gender:        F
+Major:         IS
+Address:       0 ------ ------ 0 --
 GPA:           -1.00
-Date of birth: 03/07/1996
-Email:         john117@uah.edu
+Date of birth: 00/00/0000
+Email:         ------@------
 -------------------------
-First name:    -----
-Last name:     -----
-Gender:        &
-Major:         -----
-Address:       0 ----- ----- 0 --
+First name:    Alice
+Last name:     Abernathy
+Gender:        F
+Major:         Biotechnology
+Address:       666 Jordan Gatlinburg 0 --
 GPA:           -1.00
-Date of birth: 02/28/1995
-Email:         mirak@uah.edu
+Date of birth: 00/00/0000
+Email:         ------@------
 -------------------------
-First name:    -----
-Last name:     -----
-Gender:        &
-Major:         -----
-Address:       0 ----- ----- 0 TN
-GPA:           4.00
-Date of birth: 04/17/1995
-Email:         aabe@uah.edu
+First name:    Ada
+Last name:     Wong
+Gender:        F
+Major:         Law
+Address:       214 Pulaski Destin 35806 FL
+GPA:           -1.00
+Date of birth: 00/00/0000
+Email:         ------@------
 -------------------------
-First name:    -----
-Last name:     -----
-Gender:        &
-Major:         -----
-Address:       0 ----- Destin 35806 FL
-GPA:           3.54
-Date of birth: 07/12/1993
-Email:         adaw@uah.edu
--------------------------
-First name:    -----
-Last name:     -----
-Gender:        &
+First name:    Jessica
+Last name:     Jones
+Gender:        M
 Major:         ECE
 Address:       1300 Pearman Florence 45916 SC
 GPA:           3.30
-Date of birth: 12/21/1994
-Email:         jejjones@uah.edu
+Date of birth: 12/00/0000
+Email:         ------@------
+-------------------------
+First name:    Jonathon
+Last name:     Wick
+Gender:        M
+Major:         CS
+Address:       1100 Chandler Huntsville 35806 AL
+GPA:           3.70
+Date of birth: 02/02/1996
+Email:         ------@------
+-------------------------
+First name:    Kelly
+Last name:     ------
+Gender:        &
+Major:         IS
+Address:       22 Brooklyn SanAntonio 73014 TX
+GPA:           4.00
+Date of birth: 02/14/1997
+Email:         ------@------
+-------------------------
+First name:    Jeremy
+Last name:     Rickards
+Gender:        M
+Major:         ------
+Address:       0 ------ Northville 60811 MI
+GPA:           3.54
+Date of birth: 09/21/1996
+Email:         ------@------
+-------------------------
+First name:    Sarah
+Last name:     Palmer
+Gender:        F
+Major:         CPE
+Address:       188 Oldrailroad ------ 0 AK
+GPA:           3.54
+Date of birth: 09/10/1996
+Email:         ------@------
+-------------------------
+First name:    Fred
+Last name:     Mercer
+Gender:        M
+Major:         CSE
+Address:       231 Millicas NewYork 10017 --
+GPA:           -1.00
+Date of birth: 09/12/1995
+Email:         ------@------
+-------------------------
+First name:    Conrad
+Last name:     Smith
+Gender:        M
+Major:         CS
+Address:       17 Trudy Birmingham 35516 AL
+GPA:           3.54
+Date of birth: 00/00/1996
+Email:         ------@------
+-------------------------
+First name:    ------
+Last name:     Jones
+Gender:        F
+Major:         ------
+Address:       91 Bradford Anchorage 90922 AK
+GPA:           3.71
+Date of birth: 12/19/1993
+Email:         ------@------
+-------------------------
+First name:    Ritchie
+Last name:     ------
+Gender:        M
+Major:         CS
+Address:       0 ------ Scottsboro 35836 AL
+GPA:           3.54
+Date of birth: 01/10/0000
+Email:         rrich@uah.edu
+-------------------------
+First name:    Rosalie
+Last name:     Cullen
+Gender:        &
+Major:         CS
+Address:       912 Richmond Miami 0 FL
+GPA:           3.71
+Date of birth: 06/10/0000
+Email:         rcullen@uah.edu

@@ -7,9 +7,9 @@
 AddressType::AddressType() : 
 	streetNo(-1), zip(-1)
 {
-	memset(streetName, '\0', STR_STREET_LEN);
-	memset(city, '\0', STR_CITY_LEN);
-	memset(state, '\0', STR_STATE_LEN);
+	memset(streetName, '\0', STR_STREET_LEN + 1);
+	memset(city, '\0', STR_CITY_LEN + 1);
+	memset(state, '\0', STR_STATE_LEN + 1);
 }
 
 AddressType::AddressType(const char* argStreetName, const char* argCity, const char* argState, int argStreetNo, int argZip)
@@ -22,16 +22,16 @@ AddressType::AddressType(const char* argStreetName, const char* argCity, const c
 
 
 User::User() : 
-	gender('0'), address(), gpa(-1.f), dateOfBirth(0, 0, 0), privacyCode((uint16_t)0)
+	gender('0'), address(), gpa(-1.f), dateOfBirth(0, 0, 0), privacyCode(0)
 {
-	memset(fname, '\0', STR_FNAME_LEN);
-	memset(lname, '\0', STR_LNAME_LEN);
-	memset(major, '\0', STR_MAJOR_LEN);
-	memset(email, '\0', STR_EMAIL_LEN);
+	memset(fname, '\0', STR_FNAME_LEN + 1);
+	memset(lname, '\0', STR_LNAME_LEN + 1);
+	memset(major, '\0', STR_MAJOR_LEN + 1);
+	memset(email, '\0', STR_EMAIL_LEN + 1);
 }
 
 User::User(const char* argFname, const char* argLname, char argGender, const char* argMajor, AddressType argAddress, float argGPA, DateType argDateOfBirth, const char* argEmail, int argpCode) : 
-	fname(), lname(), gender(argGender), address(argAddress), major(), gpa(argGPA), dateOfBirth(argDateOfBirth), email(), privacyCode((uint16_t)argpCode)
+	fname(), lname(), gender(argGender), address(argAddress), major(), gpa(argGPA), dateOfBirth(argDateOfBirth), email(), privacyCode(argpCode)
 {
 	strcpy(fname, argFname);
 	strcpy(lname, argLname);
@@ -52,7 +52,7 @@ void User::GetFirstName(char afname[], int code) const
 		else
 		{
 			memset(afname, '\0', STR_FNAME_LEN);
-			memset(afname, '-', 5);
+			memset(afname, '-', 6);
 		}
 	}
 	else
@@ -72,7 +72,7 @@ void User::GetLastName(char alname[], int code) const
 		else
 		{
 			memset(alname, '\0', STR_LNAME_LEN);
-			memset(alname, '-', 5);
+			memset(alname, '-', 6);
 		}
 	}
 	else
@@ -92,7 +92,7 @@ void User::GetMajor(char amajor[], int code) const
 		else
 		{
 			memset(amajor, '\0', STR_MAJOR_LEN);
-			memset(amajor, '-', 5);
+			memset(amajor, '-', 6);
 		}
 	}
 	else
@@ -143,10 +143,9 @@ void User::GetGender(char& agender, int code) const
 DateType User::GetDateOfBirth(int code) const
 {
 	// variables to hold values while we assign values
-	// Section 2.3 in the textbook doesn't have transformers in its DateType class so I assumed I couldn't create them
-	int day;
-	int month;
-	int year;
+	int day = 0;
+	int month = 0;
+	int year = 0;
 
 	// check if month from date of birth requires access code
 	if (privacyCode & MONTH_DOB_bm)
@@ -183,7 +182,7 @@ DateType User::GetDateOfBirth(int code) const
 	}
 
 	// check if year from date of birth requires access code
-	if (privacyCode & DAY_DOB_bm)
+	if (privacyCode & YEAR_DOB_bm)
 	{
 		if (privacyCode == code)
 		{
@@ -265,7 +264,7 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 		{
 			// codes didn't match so we assign bad values to indicate a bad code
 			memset(aStreetName, '\0', STR_STREET_LEN);
-			memset(aStreetName, '-', 5);
+			memset(aStreetName, '-', 6);
 			aStreetNo = 0;
 		}
 	}
@@ -290,7 +289,7 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 		{
 			// bad access code so we assign a bad city to indicate a bad code
 			memset(aCity, '\0', STR_CITY_LEN);
-			memset(aCity, '-', 5);
+			memset(aCity, '-', 6);
 		}
 	}
 	else
@@ -438,21 +437,24 @@ void User::LocalDisplay(std::ostream& outStream, int code) const
 	GetEmail(email, code);
 	GetAddress(addr, code);
 	GetGender(gender, code);
-
+	AddressType tempAddr = GetAddress(code);
+	DateType dob = GetDateOfBirth(code);
+	
 	outStream << std::string(25, '-') << std::endl;
 	outStream << std::left << std::setfill(' ') << std::setw(15) << "First name:" << fname << "\n";
 	outStream << std::left << std::setfill(' ') << std::setw(15) << "Last name:" << lname << "\n";
 	outStream << std::left << std::setfill(' ') << std::setw(15) << "Gender:" << gender << "\n";
 	outStream << std::left << std::setfill(' ') << std::setw(15) << "Major:" << major << "\n";
 	
-	outStream << std::left << std::setfill(' ') << std::setw(15) << "Address:" << std::right << addr.streetNo << " " <<
-		addr.streetName << " " << addr.city << " " << addr.zip << " " << addr.state << "\n";
+	
+	outStream << std::left << std::setfill(' ') << std::setw(15) << "Address:" << std::right << tempAddr.streetNo << " " <<
+		tempAddr.streetName << " " << tempAddr.city << " " << tempAddr.zip << " " << tempAddr.state << "\n";
 	
 	outStream << std::left << std::setfill(' ') << std::setw(15) << "GPA:" << std::right << std::fixed << std::setprecision(2) << GetGPA(code) << "\n";
 	
 	outStream << std::left << std::setfill(' ') << std::setw(15) << "Date of birth:" << std::right << std::setfill('0') <<
-		std::setw(2) << dateOfBirth.GetMonth() << "/" << std::setw(2) << dateOfBirth.GetDay() << "/" << std::setw(4) <<
-		dateOfBirth.GetYear() << "\n";
+		std::setw(2) << dob.GetMonth() << "/" << std::setw(2) << dob.GetDay() << "/" << std::setw(4) <<
+		dob.GetYear() << "\n";
 	
 	outStream << std::left << std::setfill(' ') << std::setw(15) << "Email: " << email << std::endl;
 }

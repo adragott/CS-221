@@ -1,3 +1,4 @@
+#pragma once
 #include "DateType.h"
 #include "User.h"
 #include "TestDriver.h"
@@ -46,11 +47,11 @@ void CompileTest(User& user, char fn[], char ln[], char mjr[], char eml[], char&
 
 int main(int argc, char** argv)
 {
-	//User me("Penguin", "Zerenghetti", 'm', "CompSci", AddressType("street", "huntsville", "AL", 200, 35806), 4.0f, DateType(6, 20, 1997), "penguin@hotmail.com", 8193);
+	//User me("Anthony", "Dragotta", 'M', "CompSci", AddressType("street", "huntsville", "AL", 200, 35806), 4.0f, DateType(6, 20, 1997), "ad0097@uah.edu", 989);
 	//me.Display();
 
-	//User me2;
-	//me2.Display();
+	////User me2;
+	////me2.Display();
 
 
 	TestDriver tester;
@@ -68,7 +69,10 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
+	std::cout << "Anthony Dragotta\nCS-221-04\nBonus Assignment #1\n";
 	tester.Test(users, user_count);
+
+	outFile << "Anthony Dragotta\nCS-221-04\nBonus Assignment #1\n";
 	tester.Test(outFile, users, user_count);
 
 	outFile.clear();
