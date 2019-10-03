@@ -194,7 +194,6 @@ Major: CS
 Gender: F
 Email: rcullen@uah.edu
 Address: 912 Richmond Miami 61123 FL
-State: FL
 GPA: 3.71
 BirthDate: 6 10 1995
 Privacy: 1090

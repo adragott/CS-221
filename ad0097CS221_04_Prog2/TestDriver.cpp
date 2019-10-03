@@ -43,7 +43,7 @@ int TestDriver::Populate(const char* input, User users[])
 				field_name = field_name.substr(0, field_name.find(":"));
 				if (iStream.eof())
 				{
-					break;
+					//break;
 				}
 				else if (field_name == std::string("FirstName"))
 				{
@@ -106,7 +106,10 @@ int TestDriver::Populate(const char* input, User users[])
 				}
 				else
 				{
-					std::cout << "caught bad string: " << field_name << std::endl;
+					// The last user still had the State field so I included this.
+					std::cout << "\ncaught bad field: " << field_name << std::endl;
+					std::cout << "Is the input file correct?\n\n";
+					continue;
 				}
 			}
 			else if(read_buffer[0] == '-')
@@ -120,12 +123,7 @@ int TestDriver::Populate(const char* input, User users[])
 			}
 			line_num++;
 		}
-
-		// Only increase the number of users if we didn't reach EOF
-		if (!iStream.eof())
-		{
-			user_num++;
-		}
+		user_num++;
 	}
 	iStream.close();
 	return user_num;

@@ -47,11 +47,8 @@ void CompileTest(User& user, char fn[], char ln[], char mjr[], char eml[], char&
 
 int main(int argc, char** argv)
 {
-	//User me("Anthony", "Dragotta", 'M', "CompSci", AddressType("street", "huntsville", "AL", 200, 35806), 4.0f, DateType(6, 20, 1997), "ad0097@uah.edu", 989);
-	//me.Display();
-
-	////User me2;
-	////me2.Display();
+	User me("Anthony", "Dragotta", 'M', "CompSci", AddressType("street", "huntsville", "AL", 200, 35806), 4.0f, DateType(6, 20, 1997), "ad0097@uah.edu", 989);
+	me.Display();
 
 
 	TestDriver tester;
