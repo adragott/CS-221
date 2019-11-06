@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{222c00aa-6d7d-464b-abf2-12c48edf36da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{ff33e529-01d0-4298-b5ca-91fafe4a37b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{0398713a-5f3c-4b0f-b999-03ba3c57ae80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\src">
+      <UniqueIdentifier>{f3fbefc7-e490-4451-8d80-72e324136c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\inc">
+      <UniqueIdentifier>{2a6e7366-133e-4baf-ac8d-7de3c1cf816c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestDriver.cpp">
+      <Filter>test\src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeType.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Type.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestDriver.h">
+      <Filter>test\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeType.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="homework.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Type.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
