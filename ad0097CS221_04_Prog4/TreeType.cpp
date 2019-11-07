@@ -2,6 +2,7 @@
 
 TreeType::TreeType()
 {
+
 }
 
 TreeType::~TreeType()
@@ -12,7 +13,7 @@ void TreeType::PutUser(User user)
 {
 }
 
-void TreeType::Insert(TreeNode*& tree, ItemType item)
+void TreeType::Insert(TreeNode* tree, ItemType item)
 {
 }
 

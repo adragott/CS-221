@@ -4,7 +4,6 @@
 #pragma once
 #include "homework.h"
 #include "User.h"
-#include "ItemType.h"
 #include "Type.h"
 
 enum OrderType
@@ -29,7 +28,7 @@ public:
 	TreeType();
 	~TreeType();
 	void PutUser(User user);
-	void Insert(TreeNode*& tree, ItemType item);
+	void Insert(TreeNode* tree, ItemType item);
 	User* GetYoungestStudent(DateType& bdate);
 	void Print(OrderType otype, std::ofstream &outfile);
 	void PrintTree(TreeNode tree, std::ofstream& outfile);

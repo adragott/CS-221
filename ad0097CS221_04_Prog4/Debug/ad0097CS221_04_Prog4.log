@@ -1,10 +1,5 @@
-﻿  DateType.cpp
-  ItemType.cpp
-  TreeType.cpp
-Z:\Shared\School\CS-221\ad0097CS221_04_Prog4\DateType.h(6,48): warning C4091: 'extern ': ignored on left of 'RelationType' when no variable is declared
-Z:\Shared\School\CS-221\ad0097CS221_04_Prog4\DateType.h(6,48): warning C4091: 'extern ': ignored on left of 'RelationType' when no variable is declared
-Z:\Shared\School\CS-221\ad0097CS221_04_Prog4\ItemType.h(8,1): error C2011: 'RelationType': 'enum' type redefinition
+﻿  TreeType.cpp
+  Type.cpp
   User.cpp
-Z:\Shared\School\CS-221\ad0097CS221_04_Prog4\DateType.h(6): message : see declaration of 'RelationType'
   Generating Code...
-Z:\Shared\School\CS-221\ad0097CS221_04_Prog4\DateType.h(6,48): warning C4091: 'extern ': ignored on left of 'RelationType' when no variable is declared
+  ad0097CS221_04_Prog4.vcxproj -> Z:\Shared\School\CS-221\ad0097CS221_04_Prog4\Debug\ad0097CS221_04_Prog4.exe

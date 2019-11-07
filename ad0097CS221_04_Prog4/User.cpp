@@ -3,31 +3,16 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
-// AddressType Definitions
-AddressType::AddressType() : 
-	streetNo(-1), zip(-1)
-{
-	memset(streetName, '\0', STR_STREET_LEN + 1);
-	memset(city, '\0', STR_CITY_LEN + 1);
-	memset(state, '\0', STR_STATE_LEN + 1);
-}
 
-AddressType::AddressType(const char* argStreetName, const char* argCity, const char* argState, int argStreetNo, int argZip)
-	: streetNo(argStreetNo), zip(argZip)
-{
-	strcpy(streetName, argStreetName);
-	strcpy(city, argCity);
-	strcpy(state, argState);
-}
 
 
 User::User() : 
 	gender('0'), address(), gpa(-1.f), dateOfBirth(0, 0, 0), privacyCode(0)
 {
-	memset(fname, '\0', STR_FNAME_LEN + 1);
-	memset(lname, '\0', STR_LNAME_LEN + 1);
-	memset(major, '\0', STR_MAJOR_LEN + 1);
-	memset(email, '\0', STR_EMAIL_LEN + 1);
+	memset(fname, '\0', USER_STR_FNAME_LEN + 1);
+	memset(lname, '\0', USER_STR_LNAME_LEN + 1);
+	memset(major, '\0', USER_STR_MAJOR_LEN + 1);
+	memset(email, '\0', USER_STR_EMAIL_LEN + 1);
 }
 
 User::User(const char* argFname, const char* argLname, char argGender, const char* argMajor, AddressType argAddress, float argGPA, DateType argDateOfBirth, const char* argEmail, int argpCode) : 
@@ -41,6 +26,60 @@ User::User(const char* argFname, const char* argLname, char argGender, const cha
 
 User::~User() {}
 
+bool User::operator<(User* user)
+{
+	char other_user_fname[USER_STR_FNAME_LEN + 1];
+	char other_user_lname[USER_STR_LNAME_LEN + 1];
+
+	memset(other_user_fname, '\0', USER_STR_FNAME_LEN + 1);
+	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
+
+	user->GetFirstName(other_user_fname);
+	user->GetLastName(other_user_lname);
+
+	if ((strcmpi(lname, other_user_lname) < 0) && (strcmpi(fname, other_user_fname) < 0))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool User::operator>(User* user)
+{
+	char other_user_fname[USER_STR_FNAME_LEN + 1];
+	char other_user_lname[USER_STR_LNAME_LEN + 1];
+
+	memset(other_user_fname, '\0', USER_STR_FNAME_LEN + 1);
+	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
+
+	user->GetFirstName(other_user_fname);
+	user->GetLastName(other_user_lname);
+
+	if ((strcmpi(lname, other_user_lname) > 0) && (strcmpi(fname, other_user_fname) > 0))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool User::operator==(User* user)
+{
+	char other_user_fname[USER_STR_FNAME_LEN + 1];
+	char other_user_lname[USER_STR_LNAME_LEN + 1];
+
+	memset(other_user_fname, '\0', USER_STR_FNAME_LEN + 1);
+	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
+
+	user->GetFirstName(other_user_fname);
+	user->GetLastName(other_user_lname);
+
+	if ((strcmpi(lname, other_user_lname) == 0) && (strcmpi(fname, other_user_fname) == 0))
+	{
+		return true;
+	}
+	return false;
+}
+
 void User::GetFirstName(char afname[], int code) const
 {
 	if (privacyCode & FNAME_bm)
@@ -51,7 +90,7 @@ void User::GetFirstName(char afname[], int code) const
 		}
 		else
 		{
-			memset(afname, '\0', STR_FNAME_LEN);
+			memset(afname, '\0', USER_STR_FNAME_LEN);
 			memset(afname, '-', 6);
 		}
 	}
@@ -71,7 +110,7 @@ void User::GetLastName(char alname[], int code) const
 		}
 		else
 		{
-			memset(alname, '\0', STR_LNAME_LEN);
+			memset(alname, '\0', USER_STR_LNAME_LEN);
 			memset(alname, '-', 6);
 		}
 	}
@@ -91,7 +130,7 @@ void User::GetMajor(char amajor[], int code) const
 		}
 		else
 		{
-			memset(amajor, '\0', STR_MAJOR_LEN);
+			memset(amajor, '\0', USER_STR_MAJOR_LEN);
 			memset(amajor, '-', 6);
 		}
 	}
@@ -111,7 +150,7 @@ void User::GetEmail(char anemail[], int code) const
 		}
 		else
 		{
-			memset(anemail, '\0', STR_EMAIL_LEN);
+			memset(anemail, '\0', USER_STR_EMAIL_LEN);
 			strcpy(anemail, "------@------");
 		}
 	}
@@ -263,7 +302,7 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 		else
 		{
 			// codes didn't match so we assign bad values to indicate a bad code
-			memset(aStreetName, '\0', STR_STREET_LEN);
+			memset(aStreetName, '\0', USER_STR_STREET_LEN);
 			memset(aStreetName, '-', 6);
 			aStreetNo = 0;
 		}
@@ -288,7 +327,7 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 		else
 		{
 			// bad access code so we assign a bad city to indicate a bad code
-			memset(aCity, '\0', STR_CITY_LEN);
+			memset(aCity, '\0', USER_STR_CITY_LEN);
 			memset(aCity, '-', 6);
 		}
 	}
@@ -334,8 +373,8 @@ void User::GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZi
 		{
 			
 			// codes don't match so we set the state to a string to indicate a bad code
-			memset(aState, '\0', STR_STATE_LEN);
-			memset(aState, '-', STR_STATE_LEN - 1);
+			memset(aState, '\0', USER_STR_STATE_LEN);
+			memset(aState, '-', USER_STR_STATE_LEN - 1);
 		}
 	}
 	else
@@ -424,10 +463,10 @@ void User::Implementer(char name[]) const
 
 void User::LocalDisplay(std::ostream& outStream, int code) const
 {
-	char fname[STR_FNAME_LEN];
-	char lname[STR_LNAME_LEN];
-	char major[STR_MAJOR_LEN];
-	char email[STR_EMAIL_LEN];
+	char fname[USER_STR_FNAME_LEN];
+	char lname[USER_STR_LNAME_LEN];
+	char major[USER_STR_MAJOR_LEN];
+	char email[USER_STR_EMAIL_LEN];
 	char gender;
 	AddressType addr;
 
