@@ -36,8 +36,7 @@ bool User::operator<(User* user)
 
 	user->GetFirstName(other_user_fname);
 	user->GetLastName(other_user_lname);
-
-	if ((strcmpi(lname, other_user_lname) < 0) && (strcmpi(fname, other_user_fname) < 0))
+	if (std::string(fname) < std::string(other_user_fname))
 	{
 		return true;
 	}
@@ -55,7 +54,7 @@ bool User::operator>(User* user)
 	user->GetFirstName(other_user_fname);
 	user->GetLastName(other_user_lname);
 
-	if ((strcmpi(lname, other_user_lname) > 0) && (strcmpi(fname, other_user_fname) > 0))
+	if (std::string(fname) > std::string(other_user_fname))
 	{
 		return true;
 	}
@@ -73,7 +72,7 @@ bool User::operator==(User* user)
 	user->GetFirstName(other_user_fname);
 	user->GetLastName(other_user_lname);
 
-	if ((strcmpi(lname, other_user_lname) == 0) && (strcmpi(fname, other_user_fname) == 0))
+	if (std::string(fname) == std::string(other_user_fname))
 	{
 		return true;
 	}

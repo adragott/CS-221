@@ -34,7 +34,8 @@ public:
 	void PrintTree(TreeNode tree, std::ofstream& outfile);
 	// find the user in the tree and then find the descendants of the user
 	void PrintDescendants(User* user, OrderType otype, std::ofstream& outfile);
-
+	bool IsFull() const;
+	bool IsEmpty() const;
 
 private:
 	TreeNode* root;
