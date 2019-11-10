@@ -26,55 +26,93 @@ User::User(const char* argFname, const char* argLname, char argGender, const cha
 
 User::~User() {}
 
-bool User::operator<(User* user)
+bool User::operator<(User &user)
 {
+	// arrays to hold other users' strings
 	char other_user_fname[USER_STR_FNAME_LEN + 1];
 	char other_user_lname[USER_STR_LNAME_LEN + 1];
 
+	//null them out for safety
 	memset(other_user_fname, '\0', USER_STR_FNAME_LEN + 1);
 	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
+	
+	// get other users first and last name
+	user.GetFirstName(other_user_fname);
+	user.GetLastName(other_user_lname);
 
-	user->GetFirstName(other_user_fname);
-	user->GetLastName(other_user_lname);
-	if (std::string(fname) < std::string(other_user_fname))
+	// std::string versions for easy comparison
+	std::string s_lname(lname);
+	std::string s_fname(fname);
+	std::string s_olname(other_user_lname);
+	std::string s_ofname(other_user_fname);
+
+	if((s_lname < s_olname) && (s_fname < s_ofname))
 	{
 		return true;
 	}
 	return false;
 }
 
-bool User::operator>(User* user)
+bool User::operator>(User &user)
 {
+	// arrays to hold other users' strings
 	char other_user_fname[USER_STR_FNAME_LEN + 1];
 	char other_user_lname[USER_STR_LNAME_LEN + 1];
 
+	//null them out for safety
 	memset(other_user_fname, '\0', USER_STR_FNAME_LEN + 1);
 	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
+	
+	// get other users first and last name
+	user.GetFirstName(other_user_fname);
+	user.GetLastName(other_user_lname);
 
-	user->GetFirstName(other_user_fname);
-	user->GetLastName(other_user_lname);
+	// std::string versions for easy comparison
+	std::string s_lname(lname);
+	std::string s_fname(fname);
+	std::string s_olname(other_user_lname);
+	std::string s_ofname(other_user_fname);
 
-	if (std::string(fname) > std::string(other_user_fname))
+	if((s_lname > s_olname) && (s_fname > s_ofname))
 	{
 		return true;
 	}
 	return false;
 }
 
-bool User::operator==(User* user)
+bool User::operator==(User &user)
 {
+	// arrays to hold other users' strings
 	char other_user_fname[USER_STR_FNAME_LEN + 1];
 	char other_user_lname[USER_STR_LNAME_LEN + 1];
 
+	//null them out for safety
 	memset(other_user_fname, '\0', USER_STR_FNAME_LEN + 1);
 	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
+	
+	// get other users first and last name
+	user.GetFirstName(other_user_fname);
+	user.GetLastName(other_user_lname);
 
-	user->GetFirstName(other_user_fname);
-	user->GetLastName(other_user_lname);
+	// std::string versions for easy comparison
+	std::string s_lname(lname);
+	std::string s_fname(fname);
+	std::string s_olname(other_user_lname);
+	std::string s_ofname(other_user_fname);
 
-	if (std::string(fname) == std::string(other_user_fname))
+
+	// check for length because otherwise this case would present itself:
+	// if(name == namez) { return true; }
+	// this would register as true because it only checks up to the smallest strings max index
+
+	// check if last names match in value and length
+	if ((s_lname == s_olname) && (s_lname.length() == s_olname.length()))
 	{
-		return true;
+		// check if first names match in value and length
+		if((s_fname == s_ofname) && (s_fname.length() == s_ofname.length()))
+		{
+			return true;
+		}
 	}
 	return false;
 }

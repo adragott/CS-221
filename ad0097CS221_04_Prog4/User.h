@@ -34,18 +34,18 @@ public:
 		float argGPA, DateType argDateOfBirth, const char* argEmail, int argpCode);
 	~User();
 
-	bool operator<(User* user);
-	bool operator>(User* user);
-	bool operator==(User* user);
-	//for private fname, afname will be set to “------“ if incorrect code is provided
+	bool operator<(User &user);
+	bool operator>(User &user);
+	bool operator==(User &user);
+	//for private fname, afname will be set to ï¿½------ï¿½ if incorrect code is provided
 	void GetFirstName(char afname[], int code = 0) const;
-	//for private lname, alname will be set to “------“ if incorrect code is provided
+	//for private lname, alname will be set to ï¿½------ï¿½ if incorrect code is provided
 	void GetLastName(char alname[], int code = 0) const;
-	//for private major, amajor will be set to “------“ if incorrect code is provided
+	//for private major, amajor will be set to ï¿½------ï¿½ if incorrect code is provided
 	void GetMajor(char amajor[], int code = 0) const;
-	//for private email, anemail will be set to “------@----- - “if incorrect code is provided
+	//for private email, anemail will be set to ï¿½------@----- - ï¿½if incorrect code is provided
 	void GetEmail(char anemail[], int code = 0) const;
-	//for private gender will be set to “ & “if incorrect code is provided
+	//for private gender will be set to ï¿½ & ï¿½if incorrect code is provided
 	void GetGender(char& agender, int code = 0) const;
 	//for private DOB, set the corresponding field to 0 if incorrect code is provided
 	DateType GetDateOfBirth(int code = 0) const;
@@ -55,9 +55,9 @@ public:
 	float GetGPA(int code = 0) const;
 	//for private GPA, set aGPA to - 1.0 if incorrect code is provided
 	void GetGPA(float& aGPA, int code = 0) const;
-	//for private address fields, for string fields return “------“, for integer fields to 0 if incorrect code is provided
+	//for private address fields, for string fields return ï¿½------ï¿½, for integer fields to 0 if incorrect code is provided
 	AddressType GetAddress(int code = 0) const;
-	//for private address fields, return “------“ for string fields and 0 for integer fields to 0 if incorrect code is provided
+	//for private address fields, return ï¿½------ï¿½ for string fields and 0 for integer fields to 0 if incorrect code is provided
 	void GetAddress(AddressType &aAddress, int code = 0) const;
 
 	void GetAddress(char aStreetName[], int& aStreetNo, char aCity[], int& aZip, char aState[], int code = 0) const;
