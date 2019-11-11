@@ -26,7 +26,7 @@ User::User(const char* argFname, const char* argLname, char argGender, const cha
 
 User::~User() {}
 
-bool User::operator<(User &user)
+bool User::operator<(User* user)
 {
 	// arrays to hold other users' strings
 	char other_user_fname[USER_STR_FNAME_LEN + 1];
@@ -37,8 +37,8 @@ bool User::operator<(User &user)
 	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
 	
 	// get other users first and last name
-	user.GetFirstName(other_user_fname);
-	user.GetLastName(other_user_lname);
+	user->GetFirstName(other_user_fname);
+	user->GetLastName(other_user_lname);
 
 	// std::string versions for easy comparison
 	std::string s_lname(lname);
@@ -53,7 +53,7 @@ bool User::operator<(User &user)
 	return false;
 }
 
-bool User::operator>(User &user)
+bool User::operator>(User* user)
 {
 	// arrays to hold other users' strings
 	char other_user_fname[USER_STR_FNAME_LEN + 1];
@@ -64,8 +64,8 @@ bool User::operator>(User &user)
 	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
 	
 	// get other users first and last name
-	user.GetFirstName(other_user_fname);
-	user.GetLastName(other_user_lname);
+	user->GetFirstName(other_user_fname);
+	user->GetLastName(other_user_lname);
 
 	// std::string versions for easy comparison
 	std::string s_lname(lname);
@@ -80,7 +80,7 @@ bool User::operator>(User &user)
 	return false;
 }
 
-bool User::operator==(User &user)
+bool User::operator==(User* user)
 {
 	// arrays to hold other users' strings
 	char other_user_fname[USER_STR_FNAME_LEN + 1];
@@ -91,8 +91,8 @@ bool User::operator==(User &user)
 	memset(other_user_lname, '\0', USER_STR_LNAME_LEN + 1);
 	
 	// get other users first and last name
-	user.GetFirstName(other_user_fname);
-	user.GetLastName(other_user_lname);
+	user->GetFirstName(other_user_fname);
+	user->GetLastName(other_user_lname);
 
 	// std::string versions for easy comparison
 	std::string s_lname(lname);

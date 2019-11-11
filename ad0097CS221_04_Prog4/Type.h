@@ -73,19 +73,19 @@ private:
 	int month;
 	int day;
 };
-
-class ItemType
-{
-public:
-	ItemType();
-	~ItemType();
-	void Print() const;
-	int GetValue() const;
-	void SetValue(int val);
-	RelationType ComparedTo(ItemType ot);
-private:
-	int value;
-};
+//
+//class ItemType
+//{
+//public:
+//	ItemType();
+//	~ItemType();
+//	void Print() const;
+//	int GetValue() const;
+//	void SetValue(int val);
+//	RelationType ComparedTo(ItemType ot);
+//private:
+//	int value;
+//};
 
 
 struct AddressType

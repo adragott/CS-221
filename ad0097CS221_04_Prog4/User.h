@@ -34,9 +34,9 @@ public:
 		float argGPA, DateType argDateOfBirth, const char* argEmail, int argpCode);
 	~User();
 
-	bool operator<(User &user);
-	bool operator>(User &user);
-	bool operator==(User &user);
+	bool operator<(User* user);
+	bool operator>(User* user);
+	bool operator==(User* user);
 	//for private fname, afname will be set to �------� if incorrect code is provided
 	void GetFirstName(char afname[], int code = 0) const;
 	//for private lname, alname will be set to �------� if incorrect code is provided
@@ -99,6 +99,8 @@ private:
 	// Function that allows me to put the guts of my code here so the user can call one of the two public variants
 	// and I can call this
 	void LocalDisplay(std::ostream &outStream, int code = 0) const;
+
+
 };
 
 #endif

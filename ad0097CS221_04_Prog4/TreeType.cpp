@@ -4,12 +4,19 @@ TreeType::TreeType() : root(nullptr) {}
 TreeType::~TreeType(){}
 
 
-void TreeType::PutUser(User user)
+void TreeType::PutUser(User* user)
 {
+	if (user == nullptr)
+	{
+		// bad user pass
+	}
+
+
 }
 
-void TreeType::Insert(TreeNode* tree, ItemType item)
+void TreeType::Insert(TreeNode* tree, User &user)
 {
+
 }
 
 User* TreeType::GetYoungestStudent(DateType &bdate)
@@ -25,6 +32,11 @@ void TreeType::Print(OrderType otype, std::ofstream& outfile)
 
 void TreeType::PrintTree(TreeNode tree, std::ofstream& outfile)
 {
+}
+
+int TreeType::GetLength() const
+{
+	return 0;
 }
 
 void TreeType::PrintDescendants(User* user, OrderType otype, std::ofstream& outfile)
@@ -51,4 +63,40 @@ bool TreeType::IsFull() const
 bool TreeType::IsEmpty() const
 {
 	return (root == nullptr);
+}
+
+User* TreeType::GetUser(User user, bool& found)
+{
+	Retrieve(root, user, found);
+	return (User*)&user;
+}
+
+int TreeType::CountNodes(TreeNode* tree)
+{
+	if (tree == nullptr)
+	{
+		return 0;
+	}
+	return CountNodes(tree->left) + CountNodes(tree->right) + 1;
+}
+
+void TreeType::Retrieve(TreeNode* tree, User &user, bool& found)
+{
+	if (tree == nullptr)
+	{
+		found = false;
+	}
+	else if (user < tree->user)
+	{
+		Retrieve(tree->left, user, found);
+	}
+	else if (user > tree->user)
+	{
+		Retrieve(tree->right, user, found);
+	}
+	else
+	{
+		user = *tree->user;
+		found = true;
+	}
 }
