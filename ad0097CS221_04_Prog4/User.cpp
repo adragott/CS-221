@@ -24,6 +24,14 @@ User::User(const char* argFname, const char* argLname, char argGender, const cha
 	strcpy(email, argEmail);
 }
 
+User::User(User &user) : fname(), lname(), gender(user.gender), address(user.address), major(), gpa(user.gpa), dateOfBirth(user.dateOfBirth), email(), privacyCode(user.privacyCode)
+{
+	strcpy(fname, user.fname);
+	strcpy(lname, user.lname);
+	strcpy(major, user.major);
+	strcpy(email, user.email);
+}
+
 User::~User() {}
 
 bool User::operator<(User* user)
@@ -46,7 +54,7 @@ bool User::operator<(User* user)
 	std::string s_olname(other_user_lname);
 	std::string s_ofname(other_user_fname);
 
-	if((s_lname < s_olname) && (s_fname < s_ofname))
+	if((s_lname < s_olname)/* && (s_fname < s_ofname)*/)
 	{
 		return true;
 	}
@@ -73,7 +81,7 @@ bool User::operator>(User* user)
 	std::string s_olname(other_user_lname);
 	std::string s_ofname(other_user_fname);
 
-	if((s_lname > s_olname) && (s_fname > s_ofname))
+	if((s_lname > s_olname)/* && (s_fname > s_ofname)*/)
 	{
 		return true;
 	}
@@ -108,11 +116,11 @@ bool User::operator==(User* user)
 	// check if last names match in value and length
 	if ((s_lname == s_olname) && (s_lname.length() == s_olname.length()))
 	{
-		// check if first names match in value and length
-		if((s_fname == s_ofname) && (s_fname.length() == s_ofname.length()))
-		{
+		//// check if first names match in value and length
+		//if((s_fname == s_ofname) && (s_fname.length() == s_ofname.length()))
+		//{
 			return true;
-		}
+		//}
 	}
 	return false;
 }
@@ -135,6 +143,38 @@ void User::GetFirstName(char afname[], int code) const
 	{
 		strcpy(afname, fname);
 	}
+}
+
+const char* User::GetFirstName(int code) const
+{
+	if (privacyCode & FNAME_bm)
+	{
+		if (privacyCode == code)
+		{
+			return (const char*)fname;
+		}
+		else
+		{
+			return "------";
+		}
+	}
+	return (const char*)fname;
+}
+
+const char* User::GetLastName(int code) const
+{
+	if (privacyCode & LNAME_bm)
+	{
+		if (privacyCode == code)
+		{
+			return (const char*)lname;
+		}
+		else
+		{
+			return "------";
+		}
+	}
+	return (const char*)lname;
 }
 
 void User::GetLastName(char alname[], int code) const

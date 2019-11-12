@@ -32,6 +32,7 @@ public:
 	User();
 	User(const char* argFname, const char* argLname, char argGender, const char* argMajor, AddressType argAddress, 
 		float argGPA, DateType argDateOfBirth, const char* argEmail, int argpCode);
+	User(User &user);
 	~User();
 
 	bool operator<(User* user);
@@ -39,8 +40,12 @@ public:
 	bool operator==(User* user);
 	//for private fname, afname will be set to �------� if incorrect code is provided
 	void GetFirstName(char afname[], int code = 0) const;
+	// alt form of GetFirstName for quick access -- reentrant and safe
+	const char* GetFirstName(int code = 0) const;
 	//for private lname, alname will be set to �------� if incorrect code is provided
 	void GetLastName(char alname[], int code = 0) const;
+	// alt form of GetLastName for quick access -- reentrant and safe
+	const char* GetLastName(int code = 0) const;
 	//for private major, amajor will be set to �------� if incorrect code is provided
 	void GetMajor(char amajor[], int code = 0) const;
 	//for private email, anemail will be set to �------@----- - �if incorrect code is provided

@@ -75,36 +75,3 @@ AddressType::AddressType(const char* argStreetName, const char* argCity, const c
 	strcpy(city, argCity);
 	strcpy(state, argState);
 }
-//
-//ItemType::ItemType() : value(0) {}
-//ItemType::~ItemType() {}
-//
-//void ItemType::Print() const
-//{
-//	std::cout << value;
-//}
-//
-//int ItemType::GetValue() const
-//{
-//	return value;
-//}
-//
-//void ItemType::SetValue(int val)
-//{
-//	value = val;
-//}
-//
-//RelationType ItemType::ComparedTo(ItemType item)
-//{
-//	if (value == item.GetValue())
-//	{
-//		return EQUAL;
-//	}
-//
-//	if (value < item.GetValue())
-//	{
-//		return LESS;
-//	}
-//
-//	return GREATER;
-//}
